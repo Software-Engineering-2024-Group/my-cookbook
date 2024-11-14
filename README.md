@@ -90,6 +90,23 @@ If this page failed, try to change your network environment. Typically, we notic
 
 If you still fail to load the site, try the following steps.
 
+##  Prerequisites
+*   [MongoDB](https://www.mongodb.com/products/platform/cloud) Create a cluster and generate DB URL, username, and password
+*   [GROQ](https://groq.com/) Create an API key
+*   Create `.env` File in the `api` folder:
+```
+ATLAS_URI = ...
+DATABASE = cookbook
+GROQ_API_KEY = ...
+PORT = 8000
+```
+*   [Docker](https://docs.docker.com/get-docker/)
+*   [Docker Compose](https://docs.docker.com/compose/install/)
+*   (Optional) [Python 3.11](https://www.python.org/downloads/) and [pytest 7.4.4](https://docs.pytest.org/) for testing the API
+*   (Optional) [Node.js](https://nodejs.org/en/download/) and [npm](https://docs.npmjs.com/cli/v7/commands/npm) for frontend testing
+  
+## Backend Installation
+
 ## Backend Installation
 
 To set up the back end, do:<br>
