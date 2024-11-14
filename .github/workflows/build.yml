@@ -1,40 +1,71 @@
-name: Build and Deploy
-
+name: Build
 on:
   push:
     branches:
-      - main  # Change this to your branch name if needed
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Checkout the code
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Set up Python
-      - name: Set up Python
+      # Step 2: Install Python 3.11
+      - name: Install Python 3.11
         uses: actions/setup-python@v2
         with:
-          python-version: '3.11'  # You can adjust the version of Python you're using
+          python-version: 3.11
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      # Step 4: Set environment variables from GitHub Secrets
+      # Step 3: Set environment variables
       - name: Set environment variables
         run: |
           echo "ATLAS_URI=${{ secrets.ATLAS_URI }}" >> $GITHUB_ENV
           echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
           echo "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}" >> $GITHUB_ENV
           echo "PORT=${{ secrets.PORT }}" >> $GITHUB_ENV
+        env:
+          ATLAS_URI: ${{ secrets.ATLAS_URI }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          PORT: ${{ secrets.PORT }}
 
-      # Step 5: Run your application (or build the project)
-      - name: Run the application
+      # Step 4: Install backend dependencies and run Uvicorn
+      - name: Install backend dependencies and start app
+        working-directory: ./api  # Ensure we're in the api directory
         run: |
-          uvicorn api.main:app --reload  # Replace with the actual command to start your app
+          if [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt
+            echo "Backend Python requirements installed"
+          else
+            echo "No requirements.txt found, skipping pip install."
+          fi
+          # Start the backend using uvicorn
+          python -m uvicorn main:app --reload
+
+      # Step 5: Install frontend dependencies
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: |
+          npm install --legacy-peer-deps
+          echo "Frontend NPM requirements installed"
+
+      # Step 6: Update browserslist DB
+      - name: Update browserslist DB
+        working-directory: ./frontend
+        run: |
+          npx update-browserslist-db@latest
+          npm install caniuse-lite@latest --legacy-peer-deps
+          echo "Browserslist DB updated"
+
+      # Step 7: Run frontend tests
+      - name: Run frontend tests
+        working-directory: ./frontend
+        run: |
+          npm run build
