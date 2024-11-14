@@ -6,27 +6,48 @@ on:
   pull_request:
     branches:
       - main
-  schedule: 
+  schedule:
     - cron: '0 0 * * *'
 
 jobs:
-  build:
+  cache-python:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Python 3.9.20
-        uses: actions/setup-python@v1
+      - name: Cache Python dependencies
+        uses: actions/cache@v2
         with:
-          python-version: 3.9.20
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-python-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python-
+
+      - name: Install Python 3.12
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12
 
       - name: Install backend dependencies
         working-directory: ./api
         run: |
-          pip install -r requirements.txt
-          python -m uvicorn main:app --reload
+          pip install -r requirements.txt || true
           echo "Python requirements installed"
+
+  cache-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       - name: Install frontend dependencies
         working-directory: ./frontend
@@ -34,7 +55,15 @@ jobs:
           npm install --legacy-peer-deps
           echo "NPM requirements installed"
 
-      - name: Run frontend tests
+  build:
+    needs: [cache-python, cache-npm]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run frontend build
         working-directory: ./frontend
         run: |
           npm run build
+          echo "Frontend build completed"

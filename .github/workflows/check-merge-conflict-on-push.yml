@@ -1,0 +1,32 @@
+name: Check for Merge Conflicts on Push
+
+on:
+  push:
+    branches:
+      - '**'  # Trigger on push to any branch
+
+jobs:
+  check-conflict:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Fetch all branches to ensure up-to-date refs
+        run: |
+          git fetch --all
+
+      - name: Try merging the base branch to the current branch
+        run: |
+          git checkout ${{ github.ref }}  # Checkout the pushed branch
+          git merge origin/main --no-commit --no-ff  # Attempt merge with base branch (e.g., 'main')
+
+      - name: Check for merge conflicts
+        run: |
+          if git ls-files -u | grep -q '^'; then
+            echo "Merge conflict detected!"
+            exit 1  # Fail the workflow if conflicts exist
+          else
+            echo "No merge conflicts."
+          fi
