@@ -1,47 +1,40 @@
-name: Build
+name: Build and Deploy
+
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  schedule:
-    - cron: '0 0 * * *'
+      - main  # Change this to your branch name if needed
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Python 3.11
+      # Step 2: Set up Python
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.11
+          python-version: '3.11'  # You can adjust the version of Python you're using
 
-      - name: Install backend dependencies
-        working-directory: ./api
+      # Step 3: Install dependencies
+      - name: Install dependencies
         run: |
-          pip install -r requirements.txt || true
-          python -m uvicorn main:app --reload
-          echo "Python requirements installed"
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Install frontend dependencies
-        working-directory: ./frontend
+      # Step 4: Set environment variables from GitHub Secrets
+      - name: Set environment variables
         run: |
-          npm install --legacy-peer-deps
-          echo "NPM requirements installed"
+          echo "ATLAS_URI=${{ secrets.ATLAS_URI }}" >> $GITHUB_ENV
+          echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
+          echo "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}" >> $GITHUB_ENV
+          echo "PORT=${{ secrets.PORT }}" >> $GITHUB_ENV
 
-      - name: Update browserslist DB
-        working-directory: ./frontend
+      # Step 5: Run your application (or build the project)
+      - name: Run the application
         run: |
-          npx update-browserslist-db@latest
-          npm install caniuse-lite@latest --legacy-peer-deps
-          echo "Browserslist DB updated"
-
-      - name: Run frontend tests
-        working-directory: ./frontend
-        run: |
-          npm run build
+          uvicorn api.main:app --reload  # Replace with the actual command to start your app
