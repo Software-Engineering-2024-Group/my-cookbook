@@ -255,6 +255,31 @@ Following extensions have to be added to you VS Code editor:
 - Ashwattha Phatak
 - ![Team](https://github.com/user-attachments/assets/9c9d9a1d-4efb-4952-bdd1-8bf8bb0d5afb)
 
+## Version 4
+<center>
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/SoundaryaKhanapur">
+          <img src="https://avatars.githubusercontent.com/u/36791174?v=4" width="100px;" alt="Soundarya Khanapur"/><br />
+          <sub><b>Soundarya Khanapur</b></sub>
+        </a><br />
+      </td>
+      <td align="center">
+        <a href="https://github.com/mugdhaajoshi">
+          <img src="https://avatars.githubusercontent.com/u/157236410?v=4" width="100px;" alt="Mugdha Joshi"/><br />
+          <sub><b>Mugdha Joshi</b></sub>
+        </a><br />
+      </td>
+      <td align="center">
+        <a href="https://github.com/Jing27540">
+          <img src="https://avatars.githubusercontent.com/u/131999715?v=4" width="100px;" alt="Jing Huang"/><br />
+          <sub><b>Jing Huang</b></sub>
+        </a><br />
+      </td>
+    </tr>
+  </table>
+</center>
 
 # Support
 You can find the dataset used for this project [here](https://drive.google.com/file/d/12CZFb7Ugmiw9zQ7M_qpRsn7pmaV1zW0c/view?usp=sharing)
