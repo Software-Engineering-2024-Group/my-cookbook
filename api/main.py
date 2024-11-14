@@ -8,13 +8,13 @@ this file. If not, please write to: help.cookbook@gmail.com
 
 """
 
+from fastapi.middleware.cors import CORSMiddleware
+from routes import router
+from pymongo import MongoClient
+from fastapi import FastAPI
 import sys
 import os
 sys.path.insert(0, '../')
-from fastapi import FastAPI
-from pymongo import MongoClient
-from routes import router
-from fastapi.middleware.cors import CORSMiddleware
 
 config = {
     "ATLAS_URI": os.getenv("ATLAS_URI"),
@@ -28,11 +28,12 @@ origins = ['http://localhost:3000', "*"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = ["*"],
-    allow_credentials = True,
-    allow_methods = ["*"],
-    allow_headers = ["*"]
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
 )
+
 
 @app.on_event("startup")
 def startup_db_client():
@@ -40,9 +41,11 @@ def startup_db_client():
     app.mongodb_client = MongoClient(config["ATLAS_URI"])
     app.database = app.mongodb_client[config["DB_NAME"]]
 
+
 @app.on_event("shutdown")
 def shutdown_db_client():
     """Closes the database client when the application shuts down"""
     app.mongodb_client.close()
+
 
 app.include_router(router, tags=["recipes"], prefix="/recipe")
