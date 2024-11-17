@@ -27,8 +27,11 @@ function Navbar() {
       <a href="/about" className="navbar-item">
         About
       </a>
+      <a href="/faq" className="navbar-item">
+        FAQs
+      </a>
       <a href="/contact" className="navbar-item">
-        Contact
+        Contact Us
       </a>
     </section>
   )

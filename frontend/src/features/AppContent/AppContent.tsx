@@ -14,11 +14,11 @@ this file. If not, please write to: help.cookbook@gmail.com
  * particular route
  * @author Priyanka Ambawane - dearpriyankasa@gmail.com
  */
-import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import HomePage from './HomePage/HomePage'
 import About from './HomePage/AboutPage'
 import Contact from './HomePage/ContactPage'
+import FAQPage from './HomePage/FAQPage'
 import RecipeInformation from './RecipeInformation/RecipeInformation'
 import RecipeList from './RecipeList/RecipeList'
 
@@ -30,6 +30,7 @@ const AppContent = () => {
       <Route path="/recipe-details/:id" element={<RecipeInformation />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/faq" element={<FAQPage />} />
     </Routes>
   )
 }

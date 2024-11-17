@@ -7,33 +7,38 @@ You should have received a copy of the MIT license with
 this file. If not, please write to: help.cookbook@gmail.com
 
 */
+// App.test.tsx
 
-import React from 'react';
-import { getByTestId, getByDisplayValue, getByLabelText, getByTitle, render, screen } from '@testing-library/react';
-import App from './App';
+// Mock axios to avoid issues with the import statement
+jest.mock('axios', () => ({
+  get: jest.fn(),
+}))
 
-/*test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});*/
+import React from 'react'
+import {
+  getByTestId,
+  getByLabelText,
+  render,
+  screen,
+} from '@testing-library/react'
+import App from './App'
 
 test('has header component', () => {
-  const {getByTestId} = render(<App />);
-  expect(getByTestId("header-comp-43")).toBeInTheDocument();
-});
+  const { getByTestId } = render(<App />)
+  expect(getByTestId('header-comp-43')).toBeInTheDocument()
+})
 
 test('has search component', () => {
-  const {getByTestId} = render(<App />);
-  expect(getByTestId("search-comp-43")).toBeInTheDocument();
-});
+  const { getByTestId } = render(<App />)
+  expect(getByTestId('search-comp-43')).toBeInTheDocument()
+})
 
 test('has body component', () => {
-  const {getByTestId} = render(<App />);
-  expect(getByTestId("body-comp-43")).toBeInTheDocument();
-});
+  const { getByTestId } = render(<App />)
+  expect(getByTestId('body-comp-43')).toBeInTheDocument()
+})
 
 test('shows search bar correctly', () => {
-  const {getByLabelText} = render(<App />);
-  expect(getByLabelText("Type to select Ingredients")).toBeInTheDocument();
-});
+  const { getByLabelText } = render(<App />)
+  expect(getByLabelText('Type to select Ingredients')).toBeInTheDocument()
+})

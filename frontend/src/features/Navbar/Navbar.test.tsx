@@ -1,5 +1,11 @@
-import React from 'react';
-import { getByDisplayValue, getByLabelText, getByTitle, render, screen } from '@testing-library/react';
+import React from 'react'
+import {
+  getByDisplayValue,
+  getByLabelText,
+  getByTitle,
+  render,
+  screen,
+} from '@testing-library/react'
 /*
 
 Copyright (C) 2022 SE CookBook - All Rights Reserved
@@ -10,21 +16,19 @@ this file. If not, please write to: help.cookbook@gmail.com
 
 */
 
-import Navbar from './Navbar';
+import Navbar from './Navbar'
 
-test('shows Navbar correctly', () => {
-    const {getByText} = render(<Navbar />);
-    expect(getByText("Home")).toBeInTheDocument();
-});
+test('shows Home link in Navbar', () => {
+  render(<Navbar />)
+  expect(screen.getByText('Home')).toBeInTheDocument()
+})
 
-test('shows Navbar correctly', () => {
-    const {getByText} = render(<Navbar />);
-    expect(getByText("About")).toBeInTheDocument();
-});
+test('shows About link in Navbar', () => {
+  render(<Navbar />)
+  expect(screen.getByText('About')).toBeInTheDocument()
+})
 
-test('shows Navbar correctly', () => {
-    const {getByText} = render(<Navbar />);
-    expect(getByText("Contact")).toBeInTheDocument();
-});
-
- 
+test('shows Contact Us link in Navbar', () => {
+  render(<Navbar />)
+  expect(screen.getByText(/Contact/i)).toBeInTheDocument()
+})
