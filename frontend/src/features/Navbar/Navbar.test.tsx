@@ -32,3 +32,8 @@ test('shows Contact Us link in Navbar', () => {
   render(<Navbar />)
   expect(screen.getByText(/Contact/i)).toBeInTheDocument()
 })
+
+test('shows Contact Us link in Navbar', () => {
+  render(<Navbar />)
+  expect(screen.getByText(/FAQ/i)).toBeInTheDocument()
+})
