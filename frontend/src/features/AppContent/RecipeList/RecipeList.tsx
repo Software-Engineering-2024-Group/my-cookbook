@@ -16,14 +16,21 @@ import {
   Typography,
   Card,
   CardContent,
-  CardMedia,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
   CardActionArea,
   Pagination,
   CircularProgress,
+  SelectChangeEvent,
+  Box,
+  FormHelperText,
 } from '@mui/material'
 import { getRecipeInfoInitiator } from '../RecipeInformation/getRecipeInformation.action'
 import { getRecipeListInitiator } from './getRecipeList.action'
 import './RecipeList.css'
+import { RECIPE_CATEGORIES } from './recipeCategories'
 
 /**
  * File name: RecipeList.tsx
@@ -46,9 +53,13 @@ const RecipeList = () => {
   const navigateTo = useNavigate()
 
   const [recipeList, setRecipeList] = useState<readonly RecipeListData[]>([])
+  const [filtedRecipeList, setFilteredRecipeList] = useState<
+    readonly RecipeListData[]
+  >([])
   const [page, setPage] = useState<number>(1)
   const [totalCount, setTotalCount] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
+  const [selectedCategory, setSelectedCategory] = useState<string>('')
 
   const getRecipeListState = useSelector(
     (state: any) => state.getRecipeListAppState
@@ -78,14 +89,25 @@ const RecipeList = () => {
       setTotalCount(0)
       setPage(1)
     }
-  }, [getRecipeListState.getRecipeListData])
+  }, [getRecipeListState.getRecipeListData, selectedCategory])
 
   useEffect(() => {
     setLoading(getRecipeListState.isGetRecipeListLoading)
   }, [getRecipeListState])
 
+  useEffect(() => {
+    // Filter recipes based on selected category
+    if (selectedCategory) {
+      const filtered = recipeList.filter(
+        (recipe) => recipe.category === selectedCategory
+      )
+      setFilteredRecipeList(filtered)
+    } else {
+      setFilteredRecipeList(recipeList)
+    }
+  }, [selectedCategory, recipeList])
+
   const gotoRecipe = (id: string) => {
-    console.log('hello' + id)
     dispatch(getRecipeInfoInitiator('http://localhost:8000/recipe/' + id))
     navigateTo('/recipe-details/' + id)
   }
@@ -103,24 +125,110 @@ const RecipeList = () => {
         page: value,
       })
     )
+    setSelectedCategory('')
+  }
+
+  // Handle category change
+  const handleCategoryChange = (event: SelectChangeEvent<string>) => {
+    setSelectedCategory(event.target.value)
   }
 
   return (
     <>
-      <Pagination
-        page={page}
-        count={Math.ceil(totalCount / 10)}
-        sx={{ m: 2 }}
-        onChange={handlePageChange}
-        color="secondary"
-        variant="outlined"
-        shape="rounded"
-      />
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          alignItems: 'center',
+          gap: 2,
+          mb: 2,
+          m: 2,
+        }}
+      >
+        <Box />
+        <Pagination
+          page={page}
+          count={Math.ceil(totalCount / 10)}
+          onChange={handlePageChange}
+          color="secondary"
+          variant="outlined"
+          shape="rounded"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            height: '100%',
+          }}
+        />
+        {totalCount > 0 && (
+          <FormControl
+            sx={{ display: 'flex', justifyContent: 'flex-end', height: '100%' }}
+            size="small"
+          >
+            <InputLabel
+              sx={{
+                color: 'white',
+                fontSize: '18px',
+                '&.Mui-focused': {
+                  color: 'white',
+                },
+              }}
+            >
+              Category
+            </InputLabel>
+            <Select
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+              label="Category"
+              sx={{
+                maxWidth: '280px',
+                color: 'white',
+                fontSize: '15px', // Set font size for the selected option
+                marginTop: '3px',
+                height: '40px', // Set same height as Pagination
+                width: '100%', // Full width inside FormControl
+                '.MuiSelect-icon': {
+                  color: 'white', // Dropdown arrow color
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'white', // Border color on hover
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'white', // Border color on focus
+                },
+              }}
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    maxHeight: 200,
+                    overflowY: 'auto',
+                    marginTop: '8px',
+                  },
+                },
+              }}
+            >
+              <MenuItem value="">All Categories</MenuItem>
+              {RECIPE_CATEGORIES.map((category) => (
+                <MenuItem key={category} value={category}>
+                  {category}
+                </MenuItem>
+              ))}
+            </Select>
+            {selectedCategory && filtedRecipeList.length === 0 && (
+              <FormHelperText sx={{ color: '#f44336', marginTop: '8px' }}>
+                No recipes found in this category.
+              </FormHelperText>
+            )}
+          </FormControl>
+        )}
+      </Box>
       {!loading ? (
         totalCount > 0 ? (
-          recipeList.map((data: any) => {
+          (selectedCategory && filtedRecipeList.length > 0
+            ? filtedRecipeList
+            : recipeList
+          ).map((data: any, index: number) => {
             return (
-              <Card variant="outlined" sx={{ width: 4 / 5, m: 1 }}>
+              <Card variant="outlined" sx={{ width: 4 / 5, m: 1 }} key={index}>
                 <CardActionArea onClick={() => gotoRecipe(data.id)}>
                   <CardContent>
                     <div className="d-flex flex-row">
@@ -167,8 +275,17 @@ const RecipeList = () => {
               </Card>
             )
           })
-        ) : ( // No recipes found
-          <Typography variant="h5" component="div" sx={{m:4}} className='no-recipe-found'>Currently our database does not have any recipes with the selected ingredients. Check back in later for any updates.</Typography>
+        ) : (
+          // No recipes found
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{ m: 4 }}
+            className="no-recipe-found"
+          >
+            Currently our database does not have any recipes with the selected
+            ingredients. Check back in later for any updates.
+          </Typography>
         )
       ) : (
         <CircularProgress style={{ color: 'white', margin: '50px' }} />
