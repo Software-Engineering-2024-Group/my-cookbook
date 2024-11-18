@@ -7,7 +7,7 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary'
 import MuiAccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
-import { Slider } from '@material-ui/core'
+import { Slider } from '@mui/material'
 import { Stack } from '@mui/material'
 import Button from '@mui/material/Button'
 import { getRecipeListInitiator } from '../RecipeList/getRecipeList.action'
