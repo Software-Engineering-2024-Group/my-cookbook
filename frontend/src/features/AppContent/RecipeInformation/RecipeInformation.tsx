@@ -406,7 +406,7 @@ const RecipeInformationWrapped = () => {
                 </button>
                 <button
                   onClick={() =>
-                    shareOnPlatform(window.location.href, 'discord')
+                    handleShareClick(window.location.href, 'discord')
                   }
                   style={{
                     backgroundColor: '#5865F2',
