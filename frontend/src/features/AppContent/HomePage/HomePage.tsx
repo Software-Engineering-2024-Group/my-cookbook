@@ -24,7 +24,7 @@ import { useTheme } from '../../Themes/themeContext'
 const HomePage = () => {
   const { theme } = useTheme();
   return (
-    <div > 
+    <div style={{ backgroundColor: theme.background, color: theme.color }}>
       <table>
         <tbody>
           <tr>

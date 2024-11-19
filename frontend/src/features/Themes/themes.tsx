@@ -1,59 +1,60 @@
 const themes = {
     // A warm, inviting theme that feels like opening a fresh recipe book
     cozyKitchen: {
-        background: '#fffaf0', // Creamy parchment-like background
-        color: '#5a463c', // Rich brown for text
-        headerColor: '#d2691e', // Warm cinnamon-like color for headers
+        background: '#FFFAF1', // Soft, creamy background
+        color: '#5A463C', // Warm, rich brown text for readability
+        headerColor: '#D2691E', // Cinnamon-like warm accents for headers
     },
 
-    // A modern theme inspired by sleek kitchen aesthetics
+    // A sleek, modern theme inspired by stainless steel kitchens
     stainlessStyle: {
-        background: '#e0e0e0', // Cool steel gray
-        color: '#333333', // Deep, easy-to-read text
-        headerColor: '#757575', // Dark metallic header
+        background: '#E0E0E0', // Light steel gray for a neutral backdrop
+        color: '#333333', // Dark gray text for contrast
+        headerColor: '#757575', // Muted metallic header color
     },
 
-    // A vibrant theme inspired by fresh vegetables and spices
+    // A fresh, green theme inspired by vegetables and organic ingredients
     farmersMarket: {
-        background: '#f9fbe7', // Soft green for a fresh look
-        color: '#3e4a33', // Dark green text
-        headerColor: '#81c784', // Fresh leafy green header
+        background: '#F1F8E9', // Soft, pastel green for a fresh feel
+        color: '#3E4A33', // Rich green text for clarity
+        headerColor: '#81C784', // Fresh leafy green for headers
     },
 
-    // An elegant, bookish theme for the reader-friendly aspect of CookBook
+    // An elegant theme evoking vintage recipe books and old parchment
     literaryLemon: {
-        background: '#fffde7', // Warm off-white, resembling old paper
-        color: '#3e2723', // Dark brown ink-like text
-        headerColor: '#ffd54f', // Bright gold for headers
+        background: '#FFF9C4', // Light, parchment-like off-white background
+        color: '#3E2723', // Dark brown for a bookish, vintage feel
+        headerColor: '#FFD54F', // Gold accents for a touch of elegance
     },
 
-    // A dark theme for late-night recipe hunters
+    // A dark theme for a sophisticated, late-night vibe
     midnightChef: {
-        background: '#2e2e2e', // Rich charcoal gray
-        color: '#ffffff', // Crisp white text
-        headerColor: '#9e9e9e', // Steel gray for headers
+        background: '#2C2C2C', // Charcoal gray for a sleek, dark backdrop
+        color: '#FFFFFF', // Crisp white text for high contrast
+        headerColor: '#9E9E9E', // Cool gray for headers
     },
 
     // A rustic theme inspired by farmhouse kitchens
     countryCharm: {
-        background: '#f4e4d7', // Light beige for a natural look
-        color: '#6d4c41', // Warm brown text
-        headerColor: '#a1887f', // Rustic brown for headers
+        background: '#F4E1D2', // Soft beige with a rustic, homey feel
+        color: '#6D4C41', // Warm, natural brown text for approachability
+        headerColor: '#A1887F', // Earthy brown for header accents
     },
 
-    // A playful and colorful theme inspired by creative dishes
+    // A playful, vibrant theme inspired by spices and bold flavors
     spiceSplash: {
-        background: '#fff3e0', // Soft peachy background
-        color: '#4e342e', // Deep brown text
-        headerColor: '#ff5722', // Bold orange spice header
+        background: '#FFE0B2', // Light peach background for warmth
+        color: '#4E342E', // Deep, rich brown for strong text contrast
+        headerColor: '#FF7043', // Bold orange spice header
     },
 
-    // A clean, neutral theme for focus and minimalism
+    // A minimalist, clean theme for focusing and clarity
     freshFocus: {
-        background: '#f0f7f4', // Clean white with a hint of green
-        color: '#263238', // Cool, dark text
-        headerColor: '#4caf50', // Refreshing green header
+        background: '#F1F8E9', // Light, minty green for calm focus
+        color: '#263238', // Cool dark text for easy readability
+        headerColor: '#4CAF50', // Refreshing, vibrant green accents
     },
+    
 };
 
 export default themes;

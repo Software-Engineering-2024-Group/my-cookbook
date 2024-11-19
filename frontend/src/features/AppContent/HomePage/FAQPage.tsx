@@ -1,13 +1,3 @@
-/*
-
-Copyright (C) 2022 SE CookBook - All Rights Reserved
-You may use, distribute and modify this code under the
-terms of the MIT license.
-You should have received a copy of the MIT license with
-this file. If not, please write to: help.cookbook@gmail.com
-
-*/
-
 import React from 'react'
 import {
   Paper,
@@ -18,18 +8,20 @@ import {
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import './HomePage.css'
+import { useTheme } from '../../Themes/themeContext'
 
 const FAQPage = () => {
+  const { theme } = useTheme();
+
   return (
-    <div className="faq">
-      <h2 className="faq-title">Frequently Asked Questions</h2>
+    <div className="faq" style={{ backgroundColor: theme.background, color: theme.color }}>
+      <h2 className="faq-title" style={{ color: theme.headerColor }}>Frequently Asked Questions</h2>
       <Paper
         elevation={5}
         sx={{
           marginRight: '5%',
           marginLeft: '5%',
-          color: 'white',
-          bgcolor: '#1c3c5b',
+          bgcolor: theme.headerColor, // Apply background from theme
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -42,7 +34,12 @@ const FAQPage = () => {
           <Typography
             variant="h5"
             gutterBottom
-            sx={{ fontFamily: 'RobotoThin', fontWeight: 600, fontSize: '20px' }}
+            sx={{
+              fontFamily: 'RobotoThin',
+              fontWeight: 600,
+              fontSize: '20px',
+
+            }}
           >
             1. What is CookBook?
           </Typography>
@@ -50,7 +47,11 @@ const FAQPage = () => {
             variant="body1"
             color="textSecondary"
             paragraph
-            sx={{ fontFamily: 'RobotoThin', fontSize: '20px' }}
+            sx={{
+              fontFamily: 'RobotoThin',
+              fontSize: '20px',
+              color: theme.color, // Apply general text color
+            }}
           >
             CookBook is a platform designed to suggest recipes based on the
             ingredients you already have at home. It not only provides recipe
@@ -64,7 +65,12 @@ const FAQPage = () => {
           <Typography
             variant="h5"
             gutterBottom
-            sx={{ fontFamily: 'RobotoThin', fontWeight: 600, fontSize: '20px' }}
+            sx={{
+              fontFamily: 'RobotoThin',
+              fontWeight: 600,
+              fontSize: '20px',
+              color: theme.headerColor, // Apply headerColor for headers
+            }}
           >
             2. How do I use CookBook?
           </Typography>
@@ -72,7 +78,11 @@ const FAQPage = () => {
             variant="body1"
             color="textSecondary"
             paragraph
-            sx={{ fontFamily: 'RobotoThin', fontSize: '20px' }}
+            sx={{
+              fontFamily: 'RobotoThin',
+              fontSize: '20px',
+              color: theme.color, // Apply general text color
+            }}
           >
             Using CookBook is easy. Simply enter the ingredients you have in the
             search bar, and CookBook will suggest a list of recipes that can be
@@ -85,7 +95,12 @@ const FAQPage = () => {
           <Typography
             variant="h5"
             gutterBottom
-            sx={{ fontFamily: 'RobotoThin', fontWeight: 600, fontSize: '20px' }}
+            sx={{
+              fontFamily: 'RobotoThin',
+              fontWeight: 600,
+              fontSize: '20px',
+              color: theme.headerColor, // Apply headerColor for headers
+            }}
           >
             3. How can I share a recipe?
           </Typography>
@@ -93,7 +108,11 @@ const FAQPage = () => {
             variant="body1"
             color="textSecondary"
             paragraph
-            sx={{ fontFamily: 'RobotoThin', fontSize: '20px' }}
+            sx={{
+              fontFamily: 'RobotoThin',
+              fontSize: '20px',
+              color: theme.color, // Apply general text color
+            }}
           >
             Once you’ve selected a recipe, you can share it with others via
             WhatsApp. Simply click on the "WhatsApp" button to share the recipe
@@ -105,7 +124,12 @@ const FAQPage = () => {
           <Typography
             variant="h5"
             gutterBottom
-            sx={{ fontFamily: 'RobotoThin', fontWeight: 600, fontSize: '20px' }}
+            sx={{
+              fontFamily: 'RobotoThin',
+              fontWeight: 600,
+              fontSize: '20px',
+              color: theme.headerColor, // Apply headerColor for headers
+            }}
           >
             4. What types of recipes can I find on CookBook?
           </Typography>
@@ -113,7 +137,11 @@ const FAQPage = () => {
             variant="body1"
             color="textSecondary"
             paragraph
-            sx={{ fontFamily: 'RobotoThin', fontSize: '20px' }}
+            sx={{
+              fontFamily: 'RobotoThin',
+              fontSize: '20px',
+              color: theme.color, // Apply general text color
+            }}
           >
             CookBook offers a wide variety of recipes from multiple cuisines and
             cultures. Whether you're in the mood for Italian pasta, Indian
@@ -123,10 +151,14 @@ const FAQPage = () => {
 
         {/* Collapsible FAQ entries */}
         <Accordion
-          sx={{ backgroundColor: '#1c3c5b', color: 'white', width: '100%' }}
+          sx={{
+            backgroundColor: theme.background, // Apply background color from theme
+            color: theme.color, // Apply text color from theme
+            width: '100%',
+          }}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
+            expandIcon={<ExpandMoreIcon sx={{ color: theme.color }} />} // Apply icon color from theme
             id="faq1"
           >
             <Typography
@@ -135,6 +167,7 @@ const FAQPage = () => {
                 fontFamily: 'RobotoThin',
                 fontSize: '20px',
                 fontWeight: 600,
+                color: theme.headerColor, // Apply headerColor for headers
               }}
             >
               5. Can I add my own recipes to CookBook?
@@ -144,7 +177,11 @@ const FAQPage = () => {
             <Typography
               variant="body1"
               color="textSecondary"
-              sx={{ fontFamily: 'RobotoThin', fontSize: '20px' }}
+              sx={{
+                fontFamily: 'RobotoThin',
+                fontSize: '20px',
+                color: theme.color, // Apply general text color
+              }}
             >
               Currently, users cannot upload their own recipes to the platform.
               However, you can suggest a recipe, and our team will review it for
@@ -154,10 +191,14 @@ const FAQPage = () => {
         </Accordion>
 
         <Accordion
-          sx={{ backgroundColor: '#1c3c5b', color: 'white', width: '100%' }}
+          sx={{
+            backgroundColor: theme.background, // Apply background color from theme
+            color: theme.color, // Apply text color from theme
+            width: '100%',
+          }}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
+            expandIcon={<ExpandMoreIcon sx={{ color: theme.color }} />} // Apply icon color from theme
             id="faq2"
           >
             <Typography
@@ -166,6 +207,7 @@ const FAQPage = () => {
                 fontFamily: 'RobotoThin',
                 fontSize: '20px',
                 fontWeight: 600,
+                color: theme.headerColor, // Apply headerColor for headers
               }}
             >
               6. Is CookBook available on mobile devices?
@@ -174,8 +216,12 @@ const FAQPage = () => {
           <AccordionDetails>
             <Typography
               variant="body1"
-              color="textSecondary"
-              sx={{ fontFamily: 'RobotoThin', fontSize: '20px' }}
+              color= {theme.headerColor}
+              sx={{
+                fontFamily: 'RobotoThin',
+                fontSize: '20px',
+                color: theme.color, // Apply general text color
+              }}
             >
               Yes, CookBook is fully responsive and can be used on any mobile
               device or tablet. Simply visit our website from your mobile
@@ -185,7 +231,7 @@ const FAQPage = () => {
         </Accordion>
       </Paper>
     </div>
-  )
+  );
 }
 
-export default FAQPage
+export default FAQPage;

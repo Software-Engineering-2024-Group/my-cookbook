@@ -10,12 +10,10 @@ this file. If not, please write to: help.cookbook@gmail.com
 
 .App {
   text-align: center;
-  /* background-color: #282c34; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
-  /* color: white; */
 }
 
 .App-logo {
@@ -30,35 +28,27 @@ this file. If not, please write to: help.cookbook@gmail.com
 }
 
 .App-header {
-  background-color: #1c3c5b;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
   color: white;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  /* align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin); */
-  /* color: white; */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .App-searchComponent {
-  background-color: #f2f4f4;
   min-height: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
-  /* color: white; */
   padding: 10px;
   padding-top: 30px;
   overflow-y: hidden;
 }
 
 .App-body {
-  background-color: #1c3c5b;
   min-height: 75vh;
   display: flex;
   flex-direction: column;
@@ -66,7 +56,6 @@ this file. If not, please write to: help.cookbook@gmail.com
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   overflow: hidden;
-  /* color: white; */
 }
 
 .App-link {
@@ -80,4 +69,4 @@ this file. If not, please write to: help.cookbook@gmail.com
   to {
     transform: rotate(360deg);
   }
-} 
+}
