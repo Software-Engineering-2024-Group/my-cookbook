@@ -19,8 +19,10 @@ import seventh from './photos/seventh.jpg'
 import eighth from './photos/eighth.jpg'
 import nineth from './photos/nineth.jpg'
 import tenth from './photos/tenth.jpg'
+import { useTheme } from '../../Themes/themeContext'
 
 const HomePage = () => {
+  const { theme } = useTheme();
   return (
     <div > 
       <table>

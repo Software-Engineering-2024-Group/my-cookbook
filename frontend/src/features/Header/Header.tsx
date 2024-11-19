@@ -11,6 +11,7 @@ this file. If not, please write to: help.cookbook@gmail.com
 import React from 'react'
 import './Header.css'
 import Navbar from '../Navbar/Navbar'
+import { useTheme } from '../Themes/themeContext'
 /**
  * File name: Header.tsx
  * Functional component displaying the top navigation bar.
@@ -20,11 +21,12 @@ import Navbar from '../Navbar/Navbar'
  */
 
 const Header = () => {
+  const { theme } = useTheme();
   return (
-    <section className="header">
+    <section className="header" style={{ backgroundColor: theme.background, color: theme.color }}>
       <section className="header-top">
         <section className="header-top__logo">
-          <a href="/" className="header-logo">
+          <a href="/" className="header-logo" style={{ color: theme.headerColor }}>
             C o o k B o o k
           </a>
         </section>

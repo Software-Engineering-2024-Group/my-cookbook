@@ -25,6 +25,8 @@ import Header from './features/Header/Header'
 import AppContent from './features/AppContent/AppContent'
 import GetTags from './features/AppContent/Tag/GetTags'
 import CustomizedAccordions from "./features/AppContent/NutritionFilter/CustomizedAccordions";
+import { ThemeProvider } from './features/Themes/themeContext';
+
 const store = applicationStore()
 
 const App: React.FunctionComponent<any> = () => {
@@ -34,6 +36,7 @@ const App: React.FunctionComponent<any> = () => {
     <Provider store={store}>
       {/* Browser router enables routing and navigation across multiple pages in the application */}
       <BrowserRouter>
+      <ThemeProvider> 
         <div className="App">
           <div className="App-header" data-testid="header-comp-43">
             <Header />
@@ -51,6 +54,7 @@ const App: React.FunctionComponent<any> = () => {
             <AppContent />
           </div>
         </div>
+        </ThemeProvider>
       </BrowserRouter>
     </Provider>
   )

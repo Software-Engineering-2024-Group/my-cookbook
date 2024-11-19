@@ -11,7 +11,8 @@ this file. If not, please write to: help.cookbook@gmail.com
 import React from 'react'
 
 import './Navbar.css'
-
+import { useTheme } from '../Themes/themeContext'
+import themes from '../Themes/themes'
 /**
  * File name: Navbar.tsx
  * Task - Home, About, Contact options available for the user on the Navigation Bar.
@@ -19,20 +20,46 @@ import './Navbar.css'
  */
 
 function Navbar() {
+  const { theme, toggleTheme } = useTheme();
+
+    // Function to handle theme change
+    const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      toggleTheme(event.target.value); 
+    };
+  
   return (
-    <section className="navbar">
-      <a href="/" className="navbar-item">
+    <section className="navbar" style={{ backgroundColor: theme.background }}>
+      <a href="/" className="navbar-item" style={{ color: theme.color }}>
         Home
       </a>
-      <a href="/about" className="navbar-item">
+      <a href="/about" className="navbar-item" style={{ color: theme.color }}>
         About
       </a>
-      <a href="/faq" className="navbar-item">
+      <a href="/faq" className="navbar-item" style={{ color: theme.color }}>
         FAQs
       </a>
-      <a href="/contact" className="navbar-item">
+      <a href="/contact" className="navbar-item" style={{ color: theme.color }}>
         Contact Us
       </a>
+      {/* Theme Dropdown */}
+      
+        <select
+          id="theme-dropdown"
+          onChange={handleThemeChange}
+          value={theme.background} // Set default value to current theme
+          style={{ backgroundColor: theme.background, color: theme.color }}
+        >
+          {Object.keys(themes).map((themeName) => (
+            <option
+              key={themeName}
+              value={themeName}
+              style={{ backgroundColor: themes[themeName as keyof typeof themes].background, color: themes[themeName as keyof typeof themes].color }}
+            >
+              {themeName}
+            </option>
+          ))}
+        </select>
+    
     </section>
   )
 }
