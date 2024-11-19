@@ -96,8 +96,8 @@ const FAQPage = () => {
             sx={{ fontFamily: 'RobotoThin', fontSize: '20px' }}
           >
             Once you’ve selected a recipe, you can share it with others via
-            WhatsApp. Simply click on the "WhatsApp" button to share the recipe
-            URL.
+            WhatsApp, Discord, or Slack. Simply click on the respective button
+            to share the recipe URL.
           </Typography>
         </div>
 
