@@ -10,11 +10,14 @@ this file. If not, please write to: help.cookbook@gmail.com
 
 import React from 'react';
 import './HomePage.css';
+import { useTheme } from '../../Themes/themeContext'
 
 const AboutPage = () => {
+  const { theme } = useTheme();
   return (
-    <div className="about"> 
-        <h2>About us :</h2>
+    <div style={{ backgroundColor: theme.background, color: theme.color }}>
+     
+        <h2 >About us :</h2>
         <ul>
             <li>Most of us might have been in a situation where you are craving for something to eat and 
                 due to some reason it won't be delivered to your place. And then you decide to cook it yourself you can't 

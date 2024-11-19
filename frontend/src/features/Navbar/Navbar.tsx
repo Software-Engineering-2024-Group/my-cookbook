@@ -43,22 +43,35 @@ function Navbar() {
       </a>
       {/* Theme Dropdown */}
       
+      <div className="theme-selector">
+        <label htmlFor="theme-dropdown" style={{ color: theme.color }}>
+          Select Theme:
+        </label>
         <select
           id="theme-dropdown"
           onChange={handleThemeChange}
-          value={theme.background} // Set default value to current theme
-          style={{ backgroundColor: theme.background, color: theme.color }}
+          value={Object.keys(themes).find(themeName => themes[themeName as keyof typeof themes].background === theme.background)}
+          style={{
+            backgroundColor: theme.background,
+            color: theme.color,
+            cursor: "pointer",
+            border: `1px solid ${theme.color}`
+          }}
         >
           {Object.keys(themes).map((themeName) => (
             <option
               key={themeName}
               value={themeName}
-              style={{ backgroundColor: themes[themeName as keyof typeof themes].background, color: themes[themeName as keyof typeof themes].color }}
+              style={{
+                backgroundColor: themes[themeName as keyof typeof themes].background,
+                color: themes[themeName as keyof typeof themes].color
+              }}
             >
               {themeName}
             </option>
           ))}
         </select>
+      </div>
     
     </section>
   )

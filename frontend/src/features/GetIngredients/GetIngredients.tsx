@@ -25,6 +25,7 @@ import Send from '@mui/icons-material/Send'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff'
 import { getIngredientsInitiator } from './getIngredients.action'
 import { getRecipeListInitiator } from '../AppContent/RecipeList/getRecipeList.action'
+import { useTheme } from '../Themes/themeContext'
 
 interface ChipData {
   key: string
@@ -76,6 +77,7 @@ const GetIngredients = () => {
   const dispatch = useDispatch()
   const { control } = useForm()
   const navigateTo = useNavigate()
+  const { theme } = useTheme() // Access the theme object
 
   const [chipData, setChipData] = useState<readonly ChipData[]>([])
   const [listData, setListData] = useState<readonly ListData[]>([])
@@ -84,6 +86,7 @@ const GetIngredients = () => {
   const getIngredientsState = useSelector(
     (state: any) => state.getIngredientsAppState
   )
+  
   useEffect(() => {
     let ingredients = getIngredientsState.getIngredientsData
     if (Array.isArray(ingredients)) {
@@ -137,26 +140,29 @@ const GetIngredients = () => {
 
   return (
     <>
-      <br></br>
-      <Grid container spacing={3}>
-        <Grid item xs={1}></Grid>
-        <Grid item xs={10}>
+      <br />
+      <Grid container spacing={3} style={{ backgroundColor: theme.background }}>
+        <Grid item xs={1} style={{ backgroundColor: theme.background }}></Grid>
+        <Grid item xs={10} style={{ backgroundColor: theme.background }}>
           <Controller
+
             render={({ field }) => (
               <InputField
+              style={{ backgroundColor: theme.background, color: theme.color }}
                 field={field}
                 label="Type to select Ingredients"
                 id="outlined-size-normal"
                 listData={listData}
                 onChangeField={onChangeField}
                 onChangeTextField={onChangeTextField}
+                
               />
             )}
             name="ingredients"
             control={control}
           />
         </Grid>
-        <Grid item xs={1} container justifyContent="flex-start">
+        <Grid item xs={1} container justifyContent="flex-start" style={{ backgroundColor: theme.background, color:theme.color }}>
           <Button
             onClick={onSubmit}
             type="submit"
@@ -165,17 +171,17 @@ const GetIngredients = () => {
               height: '100%',
               width: '0%',
               padding: '5px',
-              backgroundColor: '#172e44',
+              color: theme.color,
+              backgroundColor: theme.headerColor, // Use headerColor from theme
             }}
             variant="contained"
             endIcon={<Send fontSize="large" style={{ marginRight: '10px' }} />}
           />
         </Grid>
       </Grid>
-      <Grid container spacing={2}>
-
-        <Grid item xs={12}>
-          <Box paddingTop={'20px'}>
+      <Grid container spacing={2}style={{ backgroundColor: theme.background }}>
+        <Grid item xs={12} style={{ backgroundColor: theme.background }}>
+          <Box paddingTop={'20px'} style={{ backgroundColor: theme.background }}>
             {chipData.map((data) => {
               return (
                 <Chip
@@ -185,21 +191,19 @@ const GetIngredients = () => {
                   deleteIcon={
                     <HighlightOffIcon
                       fontSize="large"
-                      style={{ color: 'white' }}
+                      style={{ color: theme.color }} // Apply theme color for delete icon
                     />
                   }
                   style={{
                     margin: '5px',
-                    backgroundColor: '#34495e',
-                    color: '#f2f4f4',
+                    backgroundColor: theme.headerColor, // Use headerColor for chip background
+                    color: theme.color, // Use theme color for chip text
                   }}
                 />
               )
             })}
           </Box>
         </Grid>
-        {/* <Grid item xs={12}>
-        </Grid> */}
       </Grid>
     </>
   )
