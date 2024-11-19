@@ -21,16 +21,17 @@ const FAQPage = () => {
         sx={{
           marginRight: '5%',
           marginLeft: '5%',
-          bgcolor: theme.headerColor, // Apply background from theme
+          bgcolor: theme.background, // Apply background from theme
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           height: 'auto',
           padding: '2rem',
+          color: theme.color
         }}
       >
         {/* FAQ entries */}
-        <div className="faq-entry">
+        <div className="faq-entry" >
           <Typography
             variant="h5"
             gutterBottom
@@ -38,14 +39,13 @@ const FAQPage = () => {
               fontFamily: 'RobotoThin',
               fontWeight: 600,
               fontSize: '20px',
-
+             color: theme.color,
             }}
           >
             1. What is CookBook?
           </Typography>
           <Typography
             variant="body1"
-            color="textSecondary"
             paragraph
             sx={{
               fontFamily: 'RobotoThin',
@@ -152,7 +152,7 @@ const FAQPage = () => {
         {/* Collapsible FAQ entries */}
         <Accordion
           sx={{
-            backgroundColor: theme.background, // Apply background color from theme
+            backgroundColor: theme.headerColor, // Apply background color from theme
             color: theme.color, // Apply text color from theme
             width: '100%',
           }}
@@ -184,7 +184,6 @@ const FAQPage = () => {
               }}
             >
               Currently, users cannot upload their own recipes to the platform.
-              However, you can suggest a recipe, and our team will review it for
               future updates.
             </Typography>
           </AccordionDetails>
@@ -192,7 +191,7 @@ const FAQPage = () => {
 
         <Accordion
           sx={{
-            backgroundColor: theme.background, // Apply background color from theme
+            backgroundColor: theme.headerColor, // Apply background color from theme
             color: theme.color, // Apply text color from theme
             width: '100%',
           }}
