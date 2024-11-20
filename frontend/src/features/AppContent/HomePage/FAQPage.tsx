@@ -21,7 +21,7 @@ const FAQPage = () => {
         sx={{
           marginRight: '5%',
           marginLeft: '5%',
-          bgcolor: theme.background, // Apply background from theme
+          bgcolor: theme.headerColor, // Apply background from theme
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -155,10 +155,15 @@ const FAQPage = () => {
             backgroundColor: theme.headerColor, // Apply background color from theme
             color: theme.color, // Apply text color from theme
             width: '100%',
+            borderColor: theme.color,
+                  borderWidth: '2px', // Set the desired border thickness
+                  borderStyle: 'solid', 
           }}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx={{ color: theme.color }} />} // Apply icon color from theme
+            expandIcon={<ExpandMoreIcon sx={{ color: theme.color, borderColor: theme.color,
+              borderWidth: '2px', // Set the desired border thickness
+              borderStyle: 'solid', }} />} // Apply icon color from theme
             id="faq1"
           >
             <Typography
@@ -168,6 +173,7 @@ const FAQPage = () => {
                 fontSize: '20px',
                 fontWeight: 600,
                 color: theme.headerColor, // Apply headerColor for headers
+                
               }}
             >
               5. Can I add my own recipes to CookBook?
@@ -181,6 +187,7 @@ const FAQPage = () => {
                 fontFamily: 'RobotoThin',
                 fontSize: '20px',
                 color: theme.color, // Apply general text color
+                
               }}
             >
               Currently, users cannot upload their own recipes to the platform.
@@ -194,10 +201,15 @@ const FAQPage = () => {
             backgroundColor: theme.headerColor, // Apply background color from theme
             color: theme.color, // Apply text color from theme
             width: '100%',
+            borderColor: theme.color,
+            borderWidth: '2px', // Set the desired border thickness
+            borderStyle: 'solid', 
           }}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx={{ color: theme.color }} />} // Apply icon color from theme
+            expandIcon={<ExpandMoreIcon sx={{ color: theme.color,  borderColor: theme.color,
+              borderWidth: '2px', // Set the desired border thickness
+              borderStyle: 'solid',  }} />} // Apply icon color from theme
             id="faq2"
           >
             <Typography
