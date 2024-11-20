@@ -27,6 +27,7 @@ import MuiAccordionSummary, {
 } from '@mui/material/AccordionSummary'
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp'
 import MuiAccordionDetails from '@mui/material/AccordionDetails'
+import { useTheme } from '../../Themes/themeContext'
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -69,6 +70,7 @@ interface ChipData {
   label: string
 }
 const GetTags = () => {
+  const { theme } = useTheme();
   const dispatch = useDispatch()
   const navigateTo = useNavigate()
   const [expanded, setExpanded] = React.useState<string | false>('panel1')
@@ -109,12 +111,17 @@ const GetTags = () => {
 
     return (
       <Button
-        sx={{ m: 0.5 }}
+        sx={{ m: 0.5, backgroundColor: theme.headerColor, // Theme button background
+          color: theme.color, // Theme button text color
+          '&:hover': {
+            backgroundColor: theme.background, // Theme button hover background
+          }, }}
         size="small"
         key={key}
         onClick={onSubmit}
         type="submit"
         variant="contained"
+        
       >
         {' '}
         {name}{' '}
