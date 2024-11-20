@@ -39,6 +39,7 @@ import './RecipeInformation.css'
 import noImage from './no-image.png'
 import { FaWhatsapp, FaSlack, FaDiscord } from 'react-icons/fa'
 import axios from 'axios'
+import { useTheme } from '../../Themes/themeContext'
 
 let triviaPaperStyles = {
   backgroundColor: '#f2f4f4',
@@ -124,6 +125,7 @@ const CopyUrlModal = ({ open, onClose, url, platform }: any) => {
 }
 
 const RecipeInformationWrapped = () => {
+  const { theme } = useTheme();
   let { id } = useParams()
   const dispatch = useDispatch()
   const [input, setInput] = useState('')
@@ -228,7 +230,7 @@ const RecipeInformationWrapped = () => {
     }
     return (
       <div
-        style={{ width: '100vw', color: '#f2f4f4', paddingTop: '20px' }}
+        style={{ width: '100vw', color: theme.color, paddingTop: '20px', background: theme.background }}
         data-testid="RecipeInfo-comp-43"
       >
         {openModal && (
@@ -242,15 +244,15 @@ const RecipeInformationWrapped = () => {
         <Typography variant="h4" gutterBottom className="recipe-header">
           {recipe.name}
         </Typography>
-        <div style={{ float: 'left', width: '30vw' }}>
+        <div style={{ float: 'left', width: '30vw',color: theme.color , background: theme.background}}>
           <Paper elevation={24} style={triviaPaperStyles}>
-            <Grid container spacing={3}>
-              <Grid item xs={12} style={{ textAlign: 'center' }}>
+            <Grid container spacing={3} style={{ background: theme.background, color: theme.color,  }}>
+              <Grid item xs={12} style={{ textAlign: 'center', color: theme.color, background: theme.background}}>
                 <Typography variant="h5" gutterBottom>
                   Summary
                 </Typography>
               </Grid>
-              <Grid item xs={12} textAlign={'left'}>
+              <Grid item xs={12} textAlign={'left'} style={{ background: theme.background, color: theme.color,  }}>
                 <Typography variant="h6">
                   Ingredients:
                   <Typography variant="subtitle1" gutterBottom>
@@ -354,6 +356,7 @@ const RecipeInformationWrapped = () => {
                   marginTop: '20px',
                   display: 'flex',
                   justifyContent: 'space-between',
+                  
                 }}
               >
                 <button
@@ -434,7 +437,7 @@ const RecipeInformationWrapped = () => {
             </Grid>
           </Paper>
         </div>
-        <div style={{ float: 'left', width: '40vw', marginTop: '15px' }}>
+        <div style={{ float: 'left', width: '40vw', marginTop: '15px' , }}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Stack
@@ -442,15 +445,22 @@ const RecipeInformationWrapped = () => {
                 spacing={2}
                 paddingBottom="20px"
                 textAlign={'left'}
+                
               >
-                <div className="helper-text">
+                <div className="helper-text" style={{ color: theme.color }}>
                   Tap on any step below to hear the instructions read aloud.
                   Follow along with the recipe as you cook, and feel free to
                   pause or repeat any step!
                 </div>
                 {recipe?.instructions.map((inst: string, idx: number) => (
                   <div
-                    key={idx}
+                  style={{  backgroundColor: theme.background, // Card background from theme
+                    color: theme.color, // Card text color
+                    borderColor: theme.headerColor,
+                    borderWidth: '2px', // Set the desired border thickness
+                    borderStyle: 'solid',
+                   }}
+                                      key={idx}
                     className="step"
                     onClick={() => speakInstructions(inst)}
                   >
@@ -473,12 +483,15 @@ const RecipeInformationWrapped = () => {
                   onClick={handleButtonClick}
                   variant="contained"
                   color="primary"
-                  style={{ width: '200px' }}
+                  style={{ width: '200px', color:theme.color, background: theme.headerColor }}
                 >
                   CUSTOMIZE
                 </Button>
                 {showInput && (
-                  <div className="input-group">
+                  <div className="input-group"  style={{  backgroundColor: theme.headerColor, // Card background from theme
+                    color: theme.color, // Card text color
+                    
+                   }} >
                     <input
                       type="text"
                       value={input}
@@ -500,7 +513,7 @@ const RecipeInformationWrapped = () => {
             </Grid>
           </Grid>
         </div>
-        <div style={{ float: 'left', width: '30vw' }}>
+        <div style={{ float: 'left', width: '30vw' , color: theme.color, background:theme.headerColor}}>
           {recipe?.images?.length > 0 && recipe?.images[0] !== '' ? (
             <Typography variant="subtitle1" gutterBottom>
               <Stack direction="column" spacing={2} padding="25px">

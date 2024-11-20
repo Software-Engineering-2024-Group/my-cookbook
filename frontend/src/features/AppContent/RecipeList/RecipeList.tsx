@@ -31,6 +31,7 @@ import { getRecipeInfoInitiator } from '../RecipeInformation/getRecipeInformatio
 import { getRecipeListInitiator } from './getRecipeList.action'
 import './RecipeList.css'
 import { RECIPE_CATEGORIES } from './recipeCategories'
+import { useTheme } from '../../Themes/themeContext'
 
 /**
  * File name: RecipeList.tsx
@@ -49,6 +50,8 @@ interface RecipeListData {
 }
 
 const RecipeList = () => {
+  const { theme } = useTheme();
+
   const dispatch = useDispatch()
   const navigateTo = useNavigate()
 
@@ -143,6 +146,8 @@ const RecipeList = () => {
           gap: 2,
           mb: 2,
           m: 2,
+          backgroundColor: theme.headerColor, // Theme background
+          color: theme.color, // Theme color
         }}
       >
         <Box />
@@ -157,19 +162,28 @@ const RecipeList = () => {
             display: 'flex',
             alignItems: 'center',
             height: '100%',
+            color: theme.background
+            , // Theme color for pagination
           }}
         />
         {totalCount > 0 && (
           <FormControl
-            sx={{ display: 'flex', justifyContent: 'flex-end', height: '100%' }}
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              height: '100%',
+              color: theme.color, // Theme color
+              backgroundColor: theme.headerColor,
+            }}
             size="small"
           >
             <InputLabel
               sx={{
-                color: 'white',
+                color: theme.color, // Theme color for label
                 fontSize: '18px',
                 '&.Mui-focused': {
-                  color: 'white',
+                  color: theme.color, // Focus color from theme
+                  
                 },
               }}
             >
@@ -181,19 +195,20 @@ const RecipeList = () => {
               label="Category"
               sx={{
                 maxWidth: '280px',
-                color: 'white',
-                fontSize: '15px', // Set font size for the selected option
+                color: theme.color, // Text color from theme
+                fontSize: '15px',
                 marginTop: '3px',
-                height: '40px', // Set same height as Pagination
-                width: '100%', // Full width inside FormControl
+                height: '40px',
+                width: '100%',
                 '.MuiSelect-icon': {
-                  color: 'white', // Dropdown arrow color
+                  color: theme.color, // Dropdown arrow color
+                  backgroundColor: theme.headerColor,
                 },
                 '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'white', // Border color on hover
+                  borderColor: theme.color, // Border color on hover
                 },
                 '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'white', // Border color on focus
+                  borderColor: theme.color, // Border color on focus
                 },
               }}
               MenuProps={{
@@ -202,13 +217,26 @@ const RecipeList = () => {
                     maxHeight: 200,
                     overflowY: 'auto',
                     marginTop: '8px',
+                    backgroundColor: theme.background, // Menu background from theme
+                    color: theme.color, // Menu text color from theme
                   },
                 },
               }}
             >
               <MenuItem value="">All Categories</MenuItem>
               {RECIPE_CATEGORIES.map((category) => (
-                <MenuItem key={category} value={category}>
+                <MenuItem
+                  key={category}
+                  value={category}
+                  sx={{
+                    backgroundColor: theme.background,
+                    color: theme.color,
+                    '&:hover': {
+                      backgroundColor: theme.headerColor,
+                      color: theme.color,
+                    },
+                  }}
+                >
                   {category}
                 </MenuItem>
               ))}
@@ -228,18 +256,34 @@ const RecipeList = () => {
             : recipeList
           ).map((data: any, index: number) => {
             return (
-              <Card variant="outlined" sx={{ width: 4 / 5, m: 1 }} key={index}>
+              <Card
+                variant="outlined"
+                sx={{
+                  width: 4 / 5,
+                  m: 1,
+                  backgroundColor: theme.background, // Card background from theme
+                  color: theme.color, // Card text color
+                  borderColor: theme.headerColor,
+                  borderWidth: '2px', // Set the desired border thickness
+                  borderStyle: 'solid', // Ensure the border style is solid
+              
+                }}
+                key={index}
+              >
                 <CardActionArea onClick={() => gotoRecipe(data.id)}>
                   <CardContent>
                     <div className="d-flex flex-row">
                       <Typography
-                        sx={{ fontWeight: 600 }}
+                        sx={{ fontWeight: 600, color: theme.color }} // Theme color for text
                         gutterBottom
                         variant="h5"
                         component="div"
                       >
                         {data.name} |{' '}
-                        <StarIcon sx={{ color: '#dede04' }} fontSize="medium" />{' '}
+                        <StarIcon
+                          sx={{ color: '#dede04' }} // Star icon color
+                          fontSize="medium"
+                        />{' '}
                         {data.rating}/5.0
                       </Typography>
                       <Typography
@@ -247,14 +291,14 @@ const RecipeList = () => {
                         variant="h6"
                         component="span"
                         className="supplemental-info"
+                        sx={{ color: theme.color }} // Theme color for text
                       >
                         {data.category}
                       </Typography>
                     </div>
                     <Typography
-                      sx={{ textAlign: 'left' }}
+                      sx={{ textAlign: 'left', color: theme.color }} // Theme color for text
                       variant="subtitle2"
-                      color="text.secondary"
                     >
                       Prep Time : {data.prepTime} | Cook Time : {data.cookTime}
                     </Typography>
@@ -264,23 +308,22 @@ const RecipeList = () => {
                         textAlign: 'left',
                         marginTop: 2,
                         fontStyle: 'italic',
+                        color: theme.color, // Theme color for text
                       }}
                       variant="body2"
-                      color="text.secondary"
                     >
                       {data.description}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
               </Card>
-            )
+            );
           })
         ) : (
-          // No recipes found
           <Typography
             variant="h5"
             component="div"
-            sx={{ m: 4 }}
+            sx={{ m: 4, color: theme.color }} // Theme color for no recipes found
             className="no-recipe-found"
           >
             Currently our database does not have any recipes with the selected
@@ -288,19 +331,25 @@ const RecipeList = () => {
           </Typography>
         )
       ) : (
-        <CircularProgress style={{ color: 'white', margin: '50px' }} />
+        <CircularProgress
+          style={{ color: theme.color, margin: '50px' }} // Theme color for loader
+        />
       )}
       <Pagination
         page={page}
         count={Math.ceil(totalCount / 10)}
-        sx={{ m: 2 }}
+        sx={{
+          m: 2,
+          backgroundColor: theme.headerColor,
+          color: theme.color, // Theme color for pagination
+        }}
         onChange={handlePageChange}
         color="secondary"
         variant="outlined"
         shape="rounded"
       />
     </>
-  )
-}
+  );
+};
 
-export default RecipeList
+export default RecipeList;
