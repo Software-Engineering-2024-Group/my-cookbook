@@ -3,14 +3,18 @@
 <div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build and Test](https://github.com/AMAPAD/CookBook/actions/workflows/build&test.yml/badge.svg)](https://github.com/AMAPAD/CookBook/actions/workflows/build&test.yml)
-[![DOI](https://zenodo.org/badge/541238337.svg)](https://zenodo.org/records/14026967?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjZkNGNkZGI3LWNiMTYtNGU2MS05OWFlLWMwOTJkZDM3YjI0ZiIsImRhdGEiOnt9LCJyYW5kb20iOiI1YzYxYmUxOTA1N2ViZjkzNzhmOTkxNjJhODhjNTVjNyJ9.M5rhYxh5JJQPcZn_X0mq0pz52ERNj_Mb68lJJskuACOnYR9OO4u-zile95qLUiYml0Eijg-W7cHUnE_x1d_6Ag)
-![Github Issues](https://img.shields.io/github/issues-closed/AMAPAD/CookBook)
-![Github Issues](https://img.shields.io/github/issues/AMAPAD/CookBook)
-![Github Pull Requests](https://img.shields.io/github/issues-pr/AMAPAD/CookBook)
-![Github Pull Requests](https://img.shields.io/github/issues-pr-closed/AMAPAD/CookBook)
-![Commit Status](https://img.shields.io/github/commit-status/AMAPAD/CookBook/main/9677b6e3e656a77a55d73e34fc6e32df4d161556)
+[![Build](https://github.com/AMAPAD/CookBook/actions/workflows/build&test.yml/badge.svg)](https://github.com/AMAPAD/CookBook/actions/workflows/build&test.yml)
+[![DOI](https://zenodo.org/badge/888533527.svg)](https://doi.org/10.5281/zenodo.14200973)
+
+![Open Issues](https://img.shields.io/github/issues/Software-Engineering-2024-Group/my-cookbook)
+![Closed Issues](https://img.shields.io/github/issues-closed/Software-Engineering-2024-Group/my-cookbook)
+![Open Pull Requests](https://img.shields.io/github/issues-pr/Software-Engineering-2024-Group/my-cookbook)
+![Closed Pull Requests](https://img.shields.io/github/issues-pr-closed/Software-Engineering-2024-Group/my-cookbook)
+
+![AutoPEP8 Workflow](https://github.com/Software-Engineering-2024-Group/my-cookbook/actions/workflows/autopep8.yml/badge.svg)
+![Flake8 Workflow](https://github.com/Software-Engineering-2024-Group/my-cookbook/actions/workflows/flake8.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/AMAPAD/CookBook/badge.svg?branch=main&kill_cache=1)](https://coveralls.io/github/AMAPAD/CookBook?branch=main)
+
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
