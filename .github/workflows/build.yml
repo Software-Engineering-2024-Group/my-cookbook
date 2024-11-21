@@ -19,7 +19,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'  # Adjust Node.js version if necessary
+        node-version: '16'  
 
     - name: Cache Node.js dependencies
       uses: actions/cache@v3
@@ -34,8 +34,7 @@ jobs:
     - name: Install dependencies (frontend)
       working-directory: ./frontend
       run: |
-        npm ci --legacy-peer-deps  # Clean install with npm ci
-        npm install --legacy-peer-deps  # Handle potential peer dependency issues
+        npm install || npm install --legacy-peer-deps  
 
     - name: Run tests (always pass)
       working-directory: ./frontend
@@ -43,4 +42,4 @@ jobs:
 
     - name: Build frontend
       working-directory: ./frontend
-      run: npm run build  
+      run: npm run build 
