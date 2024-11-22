@@ -13,6 +13,7 @@ from itertools import count
 import uuid
 from typing import Optional, List
 from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr
 
 class Recipe(BaseModel):
     """A data model representing a recipe"""
@@ -127,3 +128,11 @@ class RecipeListRequest2(BaseModel):
 class RecipeQuery(BaseModel):
     query: str
     context: str
+
+class User(BaseModel):
+    email: EmailStr
+    password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
