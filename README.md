@@ -3,8 +3,9 @@
 <div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build](https://github.com/AMAPAD/CookBook/actions/workflows/build&test.yml/badge.svg)](https://github.com/AMAPAD/CookBook/actions/workflows/build&test.yml)
+[![Build](https://github.com/Software-Engineering-2024-Group/my-cookbook/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/Software-Engineering-2024-Group/my-cookbook/actions/workflows/build.yml)
 [![DOI](https://zenodo.org/badge/888533527.svg)](https://doi.org/10.5281/zenodo.14200973)
+[![Repository size](https://img.shields.io/github/repo-size/Software-Engineering-2024-Group/my-cookbook)](https://github.com/Software-Engineering-2024-Group/my-cookbook)
 
 ![Open Issues](https://img.shields.io/github/issues/Software-Engineering-2024-Group/my-cookbook)
 ![Closed Issues](https://img.shields.io/github/issues-closed/Software-Engineering-2024-Group/my-cookbook)
@@ -25,8 +26,12 @@
     src="https://groq.com/wp-content/uploads/2024/03/PBG-mark1-color.svg"
     alt="Powered by Groq for fast inference."
     width="100" 
+    height="30" 
   />
 </a>
+
+[![Join the Discord Server](https://img.shields.io/badge/Join%20the%20Discord%20Server-7289DA?style=flat&logo=discord&logoColor=white)](https://discord.gg/jqCNWqET)
+
 </div>
 <br><br>
 
