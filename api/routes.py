@@ -19,8 +19,15 @@ from groq import Groq
 from pydantic import BaseModel, conint, conlist, PositiveInt
 import logging
 from models import Recipe, RecipeListRequest, RecipeListResponse, RecipeListRequest2,RecipeQuery
+from datetime import datetime, timedelta
+from passlib.context import CryptContext
+from models import User  
+import secrets
+from jose import JWTError, jwt
+from models import Token
 
-load_dotenv()  # Load environment variables
+load_dotenv()  
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 # Check if the environment variable is loaded correctly
 print(os.getenv("GROQ_API_KEY"))
@@ -138,3 +145,24 @@ async def recommend_recipes(query: RecipeQuery = Body(...)):
         logger = logging.getLogger(__name__)
         logger.error(f"Unexpected error in recommend_recipes: {str(e)}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="An unexpected error occurred")
+    
+@router.post("/signup")
+async def signup(user: User):
+    if users_collection.find_one({"email": user.email}):
+        raise HTTPException(status_code=400, detail="Email already registered")
+    
+    hashed_password = get_password_hash(user.password)
+    users_collection.insert_one({"email": user.email, "password": hashed_password})
+    return {"message": "User created successfully"}
+
+# Login route
+@router.post("/login", response_model=Token)
+async def login(user: User):
+    db_user = users_collection.find_one({"email": user.email})
+    if not db_user or not verify_password(user.password, db_user["password"]):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    # access_token = create_access_token(data={"sub": user.email}, expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    # return {"access_token": access_token, "token_type": "bearer"}
+    random_token = secrets.token_hex(16)  # Generate a 32-character random token (16 bytes)
+    return {"access_token": random_token, "token_type": "bearer"}
