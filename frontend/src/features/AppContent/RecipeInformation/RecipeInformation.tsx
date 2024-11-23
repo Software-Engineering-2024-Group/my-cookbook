@@ -42,6 +42,7 @@ import axios from 'axios'
 import { useTheme } from '../../Themes/themeContext'
 import { useNavigate } from 'react-router-dom'; 
 
+
 let triviaPaperStyles = {
   backgroundColor: '#f2f4f4',
   marginTop: '20px',
@@ -233,17 +234,22 @@ const RecipeInformationWrapped = () => {
       })
     }
 
-    const handleAddToMealPlan = (recipee: any, dayIndex: number) => {
-      setMealPlan((prevPlan) => {
-        const updatedPlan = [...prevPlan];
-        updatedPlan[dayIndex] = { ...recipee };  // Assign recipe to the selected day
-        localStorage.setItem('mealPlan', JSON.stringify(updatedPlan));
-        return updatedPlan;
-      });
-    
-      alert(`${recipee.name} added to the meal plan for ${['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][dayIndex]}!`);
+    const handleAddToMealPlan = async (recipee: any, dayIndex: number) => {
+      try {
+        const responsee = await axios.post("http://localhost:8000/recipe/meal-plan/", {
+          day: dayIndex,
+          recipe: recipee,
+        });
+        console.log(responsee.data.message); // Success message
+        alert(`${recipee.name} added to the meal plan for ${
+          ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][dayIndex]
+        }!`);
+      } catch (error) {
+        console.error("Error saving meal plan:", error);
+        alert("Failed to save the meal plan. Please try again.");
+      }
     };
-    
+
     return (
       <div
         style={{ width: '100vw', color: theme.color, paddingTop: '20px', background: theme.background }}

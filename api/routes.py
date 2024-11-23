@@ -34,6 +34,49 @@ config = {
 router = APIRouter()
 client = Groq(api_key=config["GROQ_API_KEY"])
 
+class MealPlanEntry(BaseModel):
+    day: int  # 0-6 representing Monday-Sunday
+    recipe: dict  # The recipe details (name, instructions, etc.)
+
+router = APIRouter()
+
+@router.post("/meal-plan/", response_description="Save a meal plan for a specific day", status_code=200)
+async def save_meal_plan(entry: MealPlanEntry, request: Request):
+    """Saves or updates a meal plan for a specific day."""
+    try:
+        result = request.app.database["meal_plans"].update_one(
+            {"day": entry.day},  # Find by day
+            {"$set": {"recipe": entry.recipe}},  # Update the recipe
+            upsert=True  # Insert if no entry exists
+        )
+        return {"message": "Meal plan saved successfully."}
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="An error occurred while saving the meal plan."
+        )
+
+@router.get("/meal-plan/", response_description="Get the entire meal plan for the week", status_code=200)
+async def get_meal_plan(request: Request):
+    """Retrieves the meal plan for the week."""
+    try:
+        meal_plan = list(request.app.database["meal_plans"].find({}))
+        
+        # Convert ObjectId to string for JSON serialization
+        for entry in meal_plan:
+            entry["_id"] = str(entry["_id"])  # Convert ObjectId to string
+        
+        # Fill in missing days with None if necessary
+        complete_plan = [{day: None} for day in range(7)]
+        for entry in meal_plan:
+            complete_plan[entry["day"]] = entry
+        return complete_plan
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="An error occurred while retrieving the meal plan."
+        )
+
 @router.get("/", response_description="List all recipes", response_model=List[Recipe])
 def list_recipes(request: Request):
     """Returns a list of 10 recipes"""
