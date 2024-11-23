@@ -49,8 +49,3 @@ jobs:
       run: |
         pip install coveralls
         coveralls
-
-    - name: Run Uvicorn server
-      run: |
-        cd api
-        python -m uvicorn main:app --reload
