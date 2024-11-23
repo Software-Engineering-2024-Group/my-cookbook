@@ -15,19 +15,21 @@ from typing import Optional, List
 from pydantic import BaseModel, Field
 from pydantic import BaseModel, EmailStr
 
+
 class Recipe(BaseModel):
     """A data model representing a recipe"""
-    id: str = Field(default_factory=uuid.uuid4, alias="_id") #Unique identifier for the recip
-    name: str #Name of the recipe
+    id: str = Field(default_factory=uuid.uuid4,
+                    alias="_id")  # Unique identifier for the recip
+    name: str  # Name of the recipe
     cookTime: Optional[str] = None
     prepTime: Optional[str] = None
     totalTime: Optional[str] = None
     description: Optional[str] = None
-    images: Optional[list] = None #URLs of images related to the recipe
+    images: Optional[list] = None  # URLs of images related to the recipe
     category: str
     tags: List[str]
     ingredientQuantities: list
-    ingredients: List[str] #List of ingredients required
+    ingredients: List[str]  # List of ingredients required
     rating: Optional[str] = None
     calories: Optional[str] = None
     fat: Optional[str] = None
@@ -43,7 +45,7 @@ class Recipe(BaseModel):
 
     class Config:
         schema_extra = {
-            
+
             "example": {
                 "id": "abcd-efgh-jklm-nopq-rstuv",
                 "name": "Low-Fat Berry Blue Frozen Dessert",
@@ -109,30 +111,49 @@ class Recipe(BaseModel):
         }
 
 
-
 class RecipeListRequest(BaseModel):
-    ingredients: List[str] = Field(..., description="List of ingredients to filter recipes")
+    ingredients: List[str] = Field(...,
+                                   description="List of ingredients to filter recipes")
     page: int = Field(..., description="Page number for pagination")
 
+
 class RecipeListResponse(BaseModel):
-    recipes: List[Recipe] = Field(..., description="List of recipes matching the filter criteria")
+    recipes: List[Recipe] = Field(...,
+                                  description="List of recipes matching the filter criteria")
     page: int = Field(..., description="Current page number")
-    count: int = Field(..., description="Total count of recipes matching the filter criteria")
+    count: int = Field(...,
+                       description="Total count of recipes matching the filter criteria")
+
 
 class RecipeListRequest2(BaseModel):
     page: int = Field(..., ge=1, description="Page number, must be at least 1")
-    caloriesUp: float = Field(..., ge=0, le=4000, description="Calories upper limit, between 0 and 100")
-    fatUp: float = Field(..., ge=0, le=140, description="Fat upper limit, between 0 and 100")
-    sugUp: float = Field(..., ge=0, le=150, description="Sugar upper limit, between 0 and 100")
-    proUp: float = Field(..., ge=0, le=250, description="Protein upper limit, between 0 and 100")
+    caloriesUp: float = Field(..., ge=0, le=4000,
+                              description="Calories upper limit, between 0 and 100")
+    fatUp: float = Field(..., ge=0, le=140,
+                         description="Fat upper limit, between 0 and 100")
+    sugUp: float = Field(..., ge=0, le=150,
+                         description="Sugar upper limit, between 0 and 100")
+    proUp: float = Field(..., ge=0, le=250,
+                         description="Protein upper limit, between 0 and 100")
+
+
 class RecipeQuery(BaseModel):
     query: str
     context: str
+
 
 class User(BaseModel):
     email: EmailStr
     password: str
 
+
 class Token(BaseModel):
     access_token: str
     token_type: str
+
+
+class ShoppingListItem(BaseModel):
+    name: str
+    quantity: int
+    unit: str
+    checked: bool
