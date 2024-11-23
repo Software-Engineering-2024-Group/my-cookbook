@@ -20,13 +20,13 @@ import themes from '../Themes/themes'
  */
 
 function Navbar() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme()
 
-    // Function to handle theme change
-    const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      toggleTheme(event.target.value); 
-    };
-  
+  // Function to handle theme change
+  const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    toggleTheme(event.target.value)
+  }
+
   return (
     <section className="navbar" style={{ backgroundColor: theme.background }}>
       <a href="/" className="navbar-item" style={{ color: theme.color }}>
@@ -44,8 +44,15 @@ function Navbar() {
       <a href="/contact" className="navbar-item" style={{ color: theme.color }}>
         Contact Us
       </a>
+      <a
+        href="/shoppinglist"
+        className="navbar-item"
+        style={{ color: theme.color }}
+      >
+        Shopping List
+      </a>
       {/* Theme Dropdown */}
-      
+
       <div className="theme-selector">
         <label htmlFor="theme-dropdown" style={{ color: theme.color }}>
           Select Theme:
@@ -53,12 +60,16 @@ function Navbar() {
         <select
           id="theme-dropdown"
           onChange={handleThemeChange}
-          value={Object.keys(themes).find(themeName => themes[themeName as keyof typeof themes].background === theme.background)}
+          value={Object.keys(themes).find(
+            (themeName) =>
+              themes[themeName as keyof typeof themes].background ===
+              theme.background
+          )}
           style={{
             backgroundColor: theme.background,
             color: theme.color,
-            cursor: "pointer",
-            border: `1px solid ${theme.color}`
+            cursor: 'pointer',
+            border: `1px solid ${theme.color}`,
           }}
         >
           {Object.keys(themes).map((themeName) => (
@@ -66,8 +77,9 @@ function Navbar() {
               key={themeName}
               value={themeName}
               style={{
-                backgroundColor: themes[themeName as keyof typeof themes].background,
-                color: themes[themeName as keyof typeof themes].color
+                backgroundColor:
+                  themes[themeName as keyof typeof themes].background,
+                color: themes[themeName as keyof typeof themes].color,
               }}
             >
               {themeName}
@@ -75,7 +87,6 @@ function Navbar() {
           ))}
         </select>
       </div>
-    
     </section>
   )
 }
