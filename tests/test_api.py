@@ -315,3 +315,26 @@ def test_recommend_recipes(query, expected_status):
     response = requests.post(f"{BASE_URL}/recommend-recipes/", json={"query": query})
     assert response.status_code == expected_status, f"Failed for query: {query}"
     time.sleep(1)  # Pause for 1 second between each test case to avoid rate limiting from groq
+
+# Test for saving a meal plan
+def test_save_meal_plan():
+    entry = {
+        "day": 1,
+        "recipe": {
+            "name": "Pasta Primavera",
+            "instructions": "Boil pasta, add veggies, mix with sauce."
+        }
+    }
+    response = requests.post(f"{BASE_URL}/meal-plan/", json=entry)
+    assert response.status_code == 200
+    assert "message" in response.json()
+    assert response.json()["message"] == "Meal plan saved successfully."
+# Test for retrieving the meal plan
+def test_get_meal_plan():
+    response = requests.get(f"{BASE_URL}/meal-plan/")
+    assert response.status_code == 200
+    meal_plan = response.json()
+    assert isinstance(meal_plan, list)
+    assert len(meal_plan) == 7
+    assert any(entry["recipe"] is not None for entry in meal_plan)
+
