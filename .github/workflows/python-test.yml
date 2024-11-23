@@ -10,39 +10,41 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # You can change to macos-latest or windows-latest depending on your needs
-    
+    runs-on: ubuntu-latest
+
+    # Set environment variables for the entire job
+    env:
+      ATLAS_URI: "mongodb+srv://se-group23:TfE2up8EBCGvlv73@cluster0.ichs9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+      DB_NAME: "CookBook"
+      GROQ_API_KEY: "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"
+      PORT: "8000"
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-    
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'  # You can change the version if needed
-    
+        python-version: '3.11'
+
     - name: Install dependencies for testing
       run: |
         python -m pip install --upgrade pip
-        pip install coverage pytest fastapi  # Install fastapi for tests
-    
+        pip install coverage pytest fastapi
+
     - name: Install API dependencies
       run: |
         cd api
-        pip install -r requirements.txt  # Install dependencies for your API server
-    
+        pip install -r requirements.txt
+
     - name: Run tests with pytest
       run: |
         coverage run -m pytest ./tests/test_shopping_list.py
         coverage report
-    
+
     - name: Upload coverage report
       if: success()
       run: |
         pip install coveralls
         coveralls
-    
-    - name: Run Uvicorn server
-      run: |
-        cd api
-        python -m uvicorn main:app --reload  # Run the application server
