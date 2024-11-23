@@ -55,7 +55,18 @@ const MealPage = () => {
           ))}
         </tbody>
       </table>
-      <button onClick={printMealPlan} style={{ marginTop: '20px', padding: '10px 20px' }}>
+      <button onClick={printMealPlan} style={{
+      backgroundColor: theme.headerColor,
+      color: theme.color,
+      marginRight: '10px',
+      transition: 'transform 0.2s ease, background-color 0.2s ease',
+      marginTop: '20px', padding: '10px 20px'
+    }} onMouseEnter={(e) =>
+        (e.currentTarget.style.backgroundColor = theme.background)
+      }
+      onMouseLeave={(e) =>
+        (e.currentTarget.style.backgroundColor = theme.headerColor)
+      }>
         Print Meal Plan
       </button>
     </div>
