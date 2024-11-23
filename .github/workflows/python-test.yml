@@ -24,8 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install coverage pytest
+        pip install coverage pytest  # Install necessary dependencies directly
     
     - name: Run tests with pytest
       run: |
