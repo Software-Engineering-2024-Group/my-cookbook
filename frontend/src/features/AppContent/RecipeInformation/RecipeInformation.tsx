@@ -40,6 +40,8 @@ import noImage from './no-image.png'
 import { FaWhatsapp, FaSlack, FaDiscord } from 'react-icons/fa'
 import axios from 'axios'
 import { useTheme } from '../../Themes/themeContext'
+import { useNavigate } from 'react-router-dom'; 
+
 
 let triviaPaperStyles = {
   backgroundColor: '#f2f4f4',
@@ -126,6 +128,8 @@ const CopyUrlModal = ({ open, onClose, url, platform }: any) => {
 
 const RecipeInformationWrapped = () => {
   const { theme } = useTheme();
+  const navigate = useNavigate(); // For redirecting to Meal Plan page
+  const [mealPlan, setMealPlan] = useState<any[]>([]); // Local state for meal plan
   let { id } = useParams()
   const dispatch = useDispatch()
   const [input, setInput] = useState('')
@@ -133,6 +137,7 @@ const RecipeInformationWrapped = () => {
   const [showInput, setShowInput] = useState(false)
   const [openModal, setOpenModal] = useState<boolean>(false)
   const [selectedPlatform, setSelectedPlatform] = useState('slack')
+  const [selectedDayIndex, setSelectedDayIndex] = useState(0);
 
   const handleShareClick = (urlId: string, platform: 'slack' | 'discord') => {
     setOpenModal(true)
@@ -228,6 +233,23 @@ const RecipeInformationWrapped = () => {
         )
       })
     }
+
+    const handleAddToMealPlan = async (recipee: any, dayIndex: number) => {
+      try {
+        const responsee = await axios.post("http://localhost:8000/recipe/meal-plan/", {
+          day: dayIndex,
+          recipe: recipee,
+        });
+        console.log(responsee.data.message); // Success message
+        alert(`${recipee.name} added to the meal plan for ${
+          ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][dayIndex]
+        }!`);
+      } catch (error) {
+        console.error("Error saving meal plan:", error);
+        alert("Failed to save the meal plan. Please try again.");
+      }
+    };
+
     return (
       <div
         style={{ width: '100vw', color: theme.color, paddingTop: '20px', background: theme.background }}
@@ -241,9 +263,75 @@ const RecipeInformationWrapped = () => {
             platform={selectedPlatform}
           />
         )}
-        <Typography variant="h4" gutterBottom className="recipe-header">
-          {recipe.name}
-        </Typography>
+       <Typography variant="h4" gutterBottom className="recipe-header">
+  {recipe.name}
+</Typography>
+<div style={{ marginTop: '10px' }}>
+<select
+style={{
+  backgroundColor: theme.headerColor,
+  color: theme.color,
+  border: `1px solid ${theme.headerColor}`,
+  borderRadius: '4px',
+  padding: '8px 12px',
+  marginRight: '10px',
+  fontSize: '16px',
+  transition: 'transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease',
+  cursor: 'pointer',
+}}
+  onChange={(e) => setSelectedDayIndex(Number(e.target.value))}
+  value={selectedDayIndex}
+>
+  {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day, index) => (
+    <option key={index} value={index} style={{
+      backgroundColor: theme.background,
+      color: theme.color,
+      fontSize: '16px',
+    }}>
+      {day}
+    </option>
+  ))}
+</select>
+  <Button
+    variant="contained"
+    style={{
+      backgroundColor: theme.headerColor,
+      color: theme.color,
+      marginRight: '10px',
+      transition: 'transform 0.2s ease, background-color 0.2s ease',
+    }}
+    onMouseEnter={(e) =>
+      (e.currentTarget.style.backgroundColor = theme.background)
+    }
+    onMouseLeave={(e) =>
+      (e.currentTarget.style.backgroundColor = theme.headerColor)
+    }
+    onClick={() => handleAddToMealPlan(recipe, selectedDayIndex)}
+  >
+    Add to Meal Plan
+  </Button>
+  <Button
+    variant="outlined"
+    style={{
+      borderColor: theme.headerColor,
+      color: theme.headerColor,
+      transition: 'transform 0.2s ease, border-color 0.2s ease',
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.color = theme.color;
+      e.currentTarget.style.borderColor = theme.color;
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.color = theme.headerColor;
+      e.currentTarget.style.borderColor = theme.headerColor;
+    }}
+    onClick={() => navigate('/meal')}
+  >
+    Go to Meal Plan
+  </Button>
+</div>
+
+        
         <div style={{ float: 'left', width: '30vw',color: theme.color , background: theme.background}}>
           <Paper elevation={24} style={triviaPaperStyles}>
             <Grid container spacing={3} style={{ background: theme.background, color: theme.color,  }}>
@@ -434,6 +522,7 @@ const RecipeInformationWrapped = () => {
                   Discord
                 </button>
               </Grid>
+
             </Grid>
           </Paper>
         </div>

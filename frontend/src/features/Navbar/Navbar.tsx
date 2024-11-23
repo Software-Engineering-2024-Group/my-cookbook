@@ -32,6 +32,9 @@ function Navbar() {
       <a href="/" className="navbar-item" style={{ color: theme.color }}>
         Home
       </a>
+      <a href="/meal" className="navbar-item" style={{ color: theme.color }}>
+        Meal Plan
+      </a>
       <a href="/about" className="navbar-item" style={{ color: theme.color }}>
         About
       </a>

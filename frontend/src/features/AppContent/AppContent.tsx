@@ -21,7 +21,11 @@ import Contact from './HomePage/ContactPage'
 import FAQPage from './HomePage/FAQPage'
 import RecipeInformation from './RecipeInformation/RecipeInformation'
 import RecipeList from './RecipeList/RecipeList'
+
+import MealPage from './HomePage/MealPage'
+
 import SmartShoppingList from '../ShoppingList/SmartShoppingList'
+
 
 const AppContent = () => {
   return (
@@ -29,6 +33,7 @@ const AppContent = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/recipe-list" element={<RecipeList />} />
       <Route path="/recipe-details/:id" element={<RecipeInformation />} />
+      <Route path="/meal" element={<MealPage />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/faq" element={<FAQPage />} />
