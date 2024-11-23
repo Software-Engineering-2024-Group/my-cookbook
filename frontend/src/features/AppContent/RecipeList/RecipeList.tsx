@@ -30,7 +30,7 @@ import {
 import { getRecipeInfoInitiator } from '../RecipeInformation/getRecipeInformation.action'
 import { getRecipeListInitiator } from './getRecipeList.action'
 import './RecipeList.css'
-import { RECIPE_CATEGORIES } from './recipeCategories'
+import { RECIPE_CATEGORIES, RECIPE_COOKTIME } from './recipeCategories'
 import { useTheme } from '../../Themes/themeContext'
 
 /**
@@ -50,7 +50,7 @@ interface RecipeListData {
 }
 
 const RecipeList = () => {
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
   const dispatch = useDispatch()
   const navigateTo = useNavigate()
@@ -63,10 +63,28 @@ const RecipeList = () => {
   const [totalCount, setTotalCount] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
   const [selectedCategory, setSelectedCategory] = useState<string>('')
+  const [selectedCookTime, setSelectedCookTime] = useState<string>('')
+  const [hidden, setHidden] = useState<boolean>(false)
 
   const getRecipeListState = useSelector(
     (state: any) => state.getRecipeListAppState
   )
+
+  function convertToMinutes(timeString: string) {
+    timeString = timeString.replace(/\s+/g, '').replace('<', '')
+    const match = timeString.match(/(\d+)H(?:\s*(\d+)M)?|(\d+)M/)
+    if (match) {
+      const hours = match[1] ? parseInt(match[1], 10) : 0
+      const minutes = match[2]
+        ? parseInt(match[2], 10)
+        : match[3]
+        ? parseInt(match[3], 10)
+        : 0
+      return hours * 60 + minutes
+    } else {
+      return 0
+    }
+  }
 
   useEffect(() => {
     let recipes = getRecipeListState.getRecipeListData['recipes']
@@ -99,16 +117,30 @@ const RecipeList = () => {
   }, [getRecipeListState])
 
   useEffect(() => {
-    // Filter recipes based on selected category
     if (selectedCategory) {
-      const filtered = recipeList.filter(
+      let filtered = recipeList.filter(
         (recipe) => recipe.category === selectedCategory
       )
+      setFilteredRecipeList(filtered)
+
+      if (selectedCookTime) {
+        setHidden(true)
+        const comp = convertToMinutes(selectedCookTime)
+        let f1 = filtered.filter(
+          (recipe) => convertToMinutes(recipe.cookTime) < comp
+        )
+        if (f1.length === 0) {
+          setHidden(false)
+        } else {
+          filtered = f1
+        }
+      }
+
       setFilteredRecipeList(filtered)
     } else {
       setFilteredRecipeList(recipeList)
     }
-  }, [selectedCategory, recipeList])
+  }, [selectedCategory, selectedCookTime, recipeList])
 
   const gotoRecipe = (id: string) => {
     dispatch(getRecipeInfoInitiator('http://localhost:8000/recipe/' + id))
@@ -134,6 +166,10 @@ const RecipeList = () => {
   // Handle category change
   const handleCategoryChange = (event: SelectChangeEvent<string>) => {
     setSelectedCategory(event.target.value)
+  }
+
+  const handleCookTimeChange = (event: SelectChangeEvent<string>) => {
+    setSelectedCookTime(event.target.value)
   }
 
   return (
@@ -162,91 +198,184 @@ const RecipeList = () => {
             display: 'flex',
             alignItems: 'center',
             height: '100%',
-            color: theme.background
-            , // Theme color for pagination
+            color: theme.background,
           }}
         />
         {totalCount > 0 && (
-          <FormControl
+          <Box
             sx={{
               display: 'flex',
-              justifyContent: 'flex-end',
-              height: '100%',
-              color: theme.color, // Theme color
-              backgroundColor: theme.headerColor,
+              justifyContent: 'space-between', // Ensures space between both components
+              alignItems: 'center', // Vertically aligns the components in the middle
+              width: '100%', // Ensures the Box takes the full width
             }}
-            size="small"
           >
-            <InputLabel
+            {/* Category FormControl */}
+            <FormControl
               sx={{
-                color: theme.color, // Theme color for label
-                fontSize: '18px',
-                '&.Mui-focused': {
-                  color: theme.color, // Focus color from theme
-                  
-                },
+                display: 'flex',
+                justifyContent: 'flex-end',
+                color: theme.color,
+                backgroundColor: theme.headerColor,
+                marginTop: '15px',
+                marginBottom: '10px',
+                width: '48%', // Adjust width to fit both components in the same row
               }}
+              size="small"
             >
-              Category
-            </InputLabel>
-            <Select
-              value={selectedCategory}
-              onChange={handleCategoryChange}
-              label="Category"
-              sx={{
-                maxWidth: '280px',
-                color: theme.color, // Text color from theme
-                fontSize: '15px',
-                marginTop: '3px',
-                height: '40px',
-                width: '100%',
-                '.MuiSelect-icon': {
-                  color: theme.color, // Dropdown arrow color
-                  backgroundColor: theme.headerColor,
-                },
-                '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: theme.color, // Border color on hover
-                },
-                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  borderColor: theme.color, // Border color on focus
-                },
-              }}
-              MenuProps={{
-                PaperProps: {
-                  sx: {
-                    maxHeight: 200,
-                    overflowY: 'auto',
-                    marginTop: '8px',
-                    backgroundColor: theme.background, // Menu background from theme
-                    color: theme.color, // Menu text color from theme
-                  },
-                },
-              }}
-            >
-              <MenuItem value="">All Categories</MenuItem>
-              {RECIPE_CATEGORIES.map((category) => (
-                <MenuItem
-                  key={category}
-                  value={category}
-                  sx={{
-                    backgroundColor: theme.background,
+              <InputLabel
+                sx={{
+                  color: theme.color,
+                  fontSize: '18px',
+                  '&.Mui-focused': {
                     color: theme.color,
-                    '&:hover': {
-                      backgroundColor: theme.headerColor,
+                  },
+                }}
+              >
+                Category
+              </InputLabel>
+              <Select
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+                label="Category"
+                sx={{
+                  color: theme.color,
+                  fontSize: '15px',
+                  marginTop: '3px',
+                  height: '30px',
+                  width: '100%',
+                  '.MuiSelect-icon': {
+                    color: theme.color,
+                    backgroundColor: theme.headerColor,
+                  },
+                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.color,
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: theme.color,
+                  },
+                }}
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      maxHeight: 200,
+                      overflowY: 'auto',
+                      marginTop: '8px',
+                      backgroundColor: theme.background,
+                      color: theme.color,
+                    },
+                  },
+                }}
+              >
+                <MenuItem value="">All Categories</MenuItem>
+                {RECIPE_CATEGORIES.map((category, index) => (
+                  <MenuItem
+                    key={index}
+                    value={category}
+                    sx={{
+                      backgroundColor: theme.background,
+                      color: theme.color,
+                      '&:hover': {
+                        backgroundColor: theme.headerColor,
+                        color: theme.color,
+                      },
+                    }}
+                  >
+                    {category}
+                  </MenuItem>
+                ))}
+              </Select>
+              {selectedCategory && filtedRecipeList.length === 0 && (
+                <FormHelperText sx={{ color: '#f44336', marginTop: '8px' }}>
+                  No recipes found in this category.
+                </FormHelperText>
+              )}
+            </FormControl>
+
+            {/* Cook Time FormControl */}
+            {selectedCategory != '' && filtedRecipeList.length > 0 && (
+              <FormControl
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  color: theme.color,
+                  backgroundColor: theme.headerColor,
+                  marginTop: '15px',
+                  marginBottom: '10px',
+                  width: '48%', // Adjust width to fit both components in the same row
+                }}
+                size="small"
+              >
+                <InputLabel
+                  sx={{
+                    color: theme.color,
+                    fontSize: '18px',
+                    '&.Mui-focused': {
                       color: theme.color,
                     },
                   }}
                 >
-                  {category}
-                </MenuItem>
-              ))}
-            </Select>
-            {selectedCategory && filtedRecipeList.length === 0 && (
-              <FormHelperText sx={{ color: '#f44336', marginTop: '8px' }}>
-                No recipes found in this category.
-              </FormHelperText>
+                  Cook Time
+                </InputLabel>
+                <Select
+                  value={selectedCookTime}
+                  onChange={handleCookTimeChange}
+                  label="Cook Time"
+                  sx={{
+                    color: theme.color,
+                    fontSize: '15px',
+                    marginTop: '3px',
+                    height: '30px',
+                    width: '100%',
+                    '.MuiSelect-icon': {
+                      color: theme.color,
+                      backgroundColor: theme.headerColor,
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: theme.color,
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: theme.color,
+                    },
+                  }}
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        maxHeight: 200,
+                        overflowY: 'auto',
+                        marginTop: '8px',
+                        backgroundColor: theme.background,
+                        color: theme.color,
+                      },
+                    },
+                  }}
+                >
+                  <MenuItem value="">All Categories</MenuItem>
+                  {RECIPE_COOKTIME.map((time, index) => (
+                    <MenuItem
+                      key={index}
+                      value={time}
+                      sx={{
+                        backgroundColor: theme.background,
+                        color: theme.color,
+                        '&:hover': {
+                          backgroundColor: theme.headerColor,
+                          color: theme.color,
+                        },
+                      }}
+                    >
+                      {time}
+                    </MenuItem>
+                  ))}
+                </Select>
+                {selectedCookTime && !hidden && (
+                  <FormHelperText sx={{ color: '#f44336', marginTop: '8px' }}>
+                    No recipes found in selected cooktime.
+                  </FormHelperText>
+                )}
+              </FormControl>
             )}
-          </FormControl>
+          </Box>
         )}
       </Box>
       {!loading ? (
@@ -266,7 +395,6 @@ const RecipeList = () => {
                   borderColor: theme.headerColor,
                   borderWidth: '2px', // Set the desired border thickness
                   borderStyle: 'solid', // Ensure the border style is solid
-              
                 }}
                 key={index}
               >
@@ -317,7 +445,7 @@ const RecipeList = () => {
                   </CardContent>
                 </CardActionArea>
               </Card>
-            );
+            )
           })
         ) : (
           <Typography
@@ -349,7 +477,7 @@ const RecipeList = () => {
         shape="rounded"
       />
     </>
-  );
-};
+  )
+}
 
-export default RecipeList;
+export default RecipeList
