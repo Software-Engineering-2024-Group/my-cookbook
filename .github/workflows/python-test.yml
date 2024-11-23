@@ -21,10 +21,15 @@ jobs:
       with:
         python-version: '3.11'  # You can change the version if needed
     
-    - name: Install dependencies
+    - name: Install dependencies for testing
       run: |
         python -m pip install --upgrade pip
-        pip install coverage pytest  # Install necessary dependencies directly
+        pip install coverage pytest fastapi  # Install fastapi for tests
+    
+    - name: Install API dependencies
+      run: |
+        cd api
+        pip install -r requirements.txt  # Install dependencies for your API server
     
     - name: Run tests with pytest
       run: |
@@ -36,3 +41,8 @@ jobs:
       run: |
         pip install coveralls
         coveralls
+    
+    - name: Run Uvicorn server
+      run: |
+        cd api
+        python -m uvicorn main:app --reload  # Run the application server
