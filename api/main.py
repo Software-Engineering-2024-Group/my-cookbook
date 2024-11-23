@@ -159,3 +159,7 @@ async def delete_shopping_list_item(item_id: str):
         raise HTTPException(status_code=404, detail="Item not found")
 
     return {"message": f"Item with ID {item_id} deleted successfully"}
+
+def get_database():
+    """Returns the database connection."""
+    return app.database
