@@ -7,7 +7,6 @@ from bson import ObjectId
 from routes import app, users_db
 
 
-# Initialize TestClient
 client = TestClient(app)
 
 @pytest.fixture
@@ -181,7 +180,7 @@ def test_login_after_password_update(clear_users_db):
     signup_data = {"email": "updatepassword@example.com", "password": "oldpassword"}
     client.post("/signup", json=signup_data)
 
-    # Simulate password change
+  
     users_db["updatepassword@example.com"] = "newpassword"
 
     login_data = {"email": "updatepassword@example.com", "password": "newpassword"}
