@@ -19,8 +19,8 @@ from groq import Groq
 from pydantic import BaseModel, conint, conlist, PositiveInt
 import logging
 from models import Recipe, RecipeListRequest, RecipeListResponse, RecipeListRequest2,RecipeQuery
-from models import User
-from models import User
+# from models import User
+# from models import User
 
 load_dotenv()  # Load environment variables
 app = FastAPI()
@@ -188,45 +188,45 @@ async def recommend_recipes(query: RecipeQuery = Body(...)):
         logger.error(f"Unexpected error in recommend_recipes: {str(e)}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="An unexpected error occurred")
     
-@app.post("/signup")
-async def signup(user: User):
-    if user.email in users_db:
-        raise HTTPException(status_code=400, detail="User already exists")
+# @app.post("/signup")
+# async def signup(user: User):
+#     if user.email in users_db:
+#         raise HTTPException(status_code=400, detail="User already exists")
     
-    # Store user data in memory (simple in-memory storage)
-    users_db[user.email] = user.password
-    return {"message": "Signup successful"}
+#     # Store user data in memory (simple in-memory storage)
+#     users_db[user.email] = user.password
+#     return {"message": "Signup successful"}
 
-@app.post("/login")
-async def login(user: User):
-    # Check if the email exists in the in-memory dictionary
-    if user.email not in users_db:
-        raise HTTPException(status_code=400, detail="Incorrect email or password")
+# @app.post("/login")
+# async def login(user: User):
+#     # Check if the email exists in the in-memory dictionary
+#     if user.email not in users_db:
+#         raise HTTPException(status_code=400, detail="Incorrect email or password")
     
-    # Check if the entered password matches the stored password
-    if users_db[user.email] != user.password:
-        raise HTTPException(status_code=400, detail="Incorrect email or password")
+#     # Check if the entered password matches the stored password
+#     if users_db[user.email] != user.password:
+#         raise HTTPException(status_code=400, detail="Incorrect email or password")
     
-    return {"message": "Login successful"}
+#     return {"message": "Login successful"}
 
     
-@app.post("/signup")
-async def signup(user: User):
-    if user.email in users_db:
-        raise HTTPException(status_code=400, detail="User already exists")
+# @app.post("/signup")
+# async def signup(user: User):
+#     if user.email in users_db:
+#         raise HTTPException(status_code=400, detail="User already exists")
     
-    # Store user data in memory (simple in-memory storage)
-    users_db[user.email] = user.password
-    return {"message": "Signup successful"}
+#     # Store user data in memory (simple in-memory storage)
+#     users_db[user.email] = user.password
+#     return {"message": "Signup successful"}
 
-@app.post("/login")
-async def login(user: User):
-    # Check if the email exists in the in-memory dictionary
-    if user.email not in users_db:
-        raise HTTPException(status_code=400, detail="Incorrect email or password")
+# @app.post("/login")
+# async def login(user: User):
+#     # Check if the email exists in the in-memory dictionary
+#     if user.email not in users_db:
+#         raise HTTPException(status_code=400, detail="Incorrect email or password")
     
-    # Check if the entered password matches the stored password
-    if users_db[user.email] != user.password:
-        raise HTTPException(status_code=400, detail="Incorrect email or password")
+#     # Check if the entered password matches the stored password
+#     if users_db[user.email] != user.password:
+#         raise HTTPException(status_code=400, detail="Incorrect email or password")
     
-    return {"message": "Login successful"}
+#     return {"message": "Login successful"}
