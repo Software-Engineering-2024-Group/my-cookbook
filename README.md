@@ -47,6 +47,15 @@ CookBook is a platform to search for recipes that can be made using the availabl
 
 With over recipes, there is something in the store for everyone !<br><br>
 
+# Why CookBook?
+
+- Most of us might have been in a situation where you are craving for something to eat and due to some reason it won't be delivered to your place. And then you decide to cook it yourself you can't find a recipe with the ingredients you have.
+- In this fast-paced world, we are often confused about what can be cooked with the ingredients that are available right away.
+- CookBook addresses this issue and is designed to suggest recipes to you which would use the key ingredients that are available with you.
+- It not only suggests the recipe based on the ingredients entered by you, it also gives the ratings, step-by-step cooking instructions and other granular details about the recipe.
+- Apart from giving the user a smooth and a stress-free experience, it also serves as a platform to find recipes across multiple cuisines and cultures.
+- The interface of CookBook is somewhat similar to most of the search-engines, giving a sense of familiarity to the user. The user would have to just enter the available ingredients in a search bar and click on the proceed icon to get a list of suggestions for recipes.
+
 # Content
 
 <p align="center">
@@ -70,9 +79,7 @@ With over recipes, there is something in the store for everyone !<br><br>
   
 </p><br><br>
 
-# Demo
 
-<p align="center"><img width="700" src="./assets/demo.gif"></p><br><br>
 
 # What's New?
 ### Click the image below
@@ -83,6 +90,10 @@ With over recipes, there is something in the store for everyone !<br><br>
 - Make CookBook come online as a website: [Cook Book](https://cookbook-alpha.vercel.app/) Users don't need to install the backend and frontend anymore.
 - Add filtering system based on nutrition.
 - Created ingredient tags to simplify the searching.
+
+  # Demo
+
+<p align="center"><img width="700" src="./assets/demo.gif"></p><br><br>
 
 
 ## Better Software Design
@@ -254,14 +265,7 @@ Following extensions have to be added to you VS Code editor:
 [Codecov](https://app.codecov.io/gh/yzhu27/CookBook)
 ![civ](assets/codecov.png)
 
-# Why CookBook?
 
-- Most of us might have been in a situation where you are craving for something to eat and due to some reason it won't be delivered to your place. And then you decide to cook it yourself you can't find a recipe with the ingredients you have.
-- In this fast-paced world, we are often confused about what can be cooked with the ingredients that are available right away.
-- CookBook addresses this issue and is designed to suggest recipes to you which would use the key ingredients that are available with you.
-- It not only suggests the recipe based on the ingredients entered by you, it also gives the ratings, step-by-step cooking instructions and other granular details about the recipe.
-- Apart from giving the user a smooth and a stress-free experience, it also serves as a platform to find recipes across multiple cuisines and cultures.
-- The interface of CookBook is somewhat similar to most of the search-engines, giving a sense of familiarity to the user. The user would have to just enter the available ingredients in a search bar and click on the proceed icon to get a list of suggestions for recipes.
 
 # Meet the Team
 
