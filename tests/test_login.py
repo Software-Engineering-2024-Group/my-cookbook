@@ -173,7 +173,7 @@ def test_login_case_sensitive_email(clear_users_db):
 
     login_data = {"email": "testuser@example.com", "password": "password123"}
     response = client.post("/login", json=login_data)
-    assert response.status_code == 400  # Incorrect email or password
+    assert response.status_code == 400  
     assert response.json() == {"detail": "Incorrect email or password"}
 
 def test_login_after_password_update(clear_users_db):

@@ -26,6 +26,8 @@ import AppContent from './features/AppContent/AppContent';
 import GetTags from './features/AppContent/Tag/GetTags';
 import CustomizedAccordions from './features/AppContent/NutritionFilter/CustomizedAccordions';
 import { ThemeProvider, useTheme } from './features/Themes/themeContext';
+import Login from "./features/AppContent/HomePage/Login"; 
+import Profile from "./features/AppContent/HomePage/Profile";
 
 const store = applicationStore();
 

@@ -12,15 +12,18 @@ import sys
 import os
 sys.path.insert(0, '../')
 from dotenv import load_dotenv
-from fastapi import APIRouter, Body, Request, HTTPException, status
+from fastapi import FastAPI, APIRouter, Body, Request, HTTPException, status
 from typing import List
 import pymongo
 from groq import Groq
 from pydantic import BaseModel, conint, conlist, PositiveInt
 import logging
 from models import Recipe, RecipeListRequest, RecipeListResponse, RecipeListRequest2,RecipeQuery
+from models import User
 
 load_dotenv()  # Load environment variables
+app = FastAPI()
+users_db = {}
 
 # Check if the environment variable is loaded correctly
 print(os.getenv("GROQ_API_KEY"))
@@ -181,3 +184,24 @@ async def recommend_recipes(query: RecipeQuery = Body(...)):
         logger = logging.getLogger(__name__)
         logger.error(f"Unexpected error in recommend_recipes: {str(e)}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="An unexpected error occurred")
+    
+@app.post("/signup")
+async def signup(user: User):
+    if user.email in users_db:
+        raise HTTPException(status_code=400, detail="User already exists")
+    
+    # Store user data in memory (simple in-memory storage)
+    users_db[user.email] = user.password
+    return {"message": "Signup successful"}
+
+@app.post("/login")
+async def login(user: User):
+    # Check if the email exists in the in-memory dictionary
+    if user.email not in users_db:
+        raise HTTPException(status_code=400, detail="Incorrect email or password")
+    
+    # Check if the entered password matches the stored password
+    if users_db[user.email] != user.password:
+        raise HTTPException(status_code=400, detail="Incorrect email or password")
+    
+    return {"message": "Login successful"}
