@@ -19,6 +19,9 @@ import sys
 import os
 sys.path.insert(0, '../')
 
+app = FastAPI()
+app.include_router(router) 
+
 config = {
     "ATLAS_URI": os.getenv("ATLAS_URI"),
     "DB_NAME": os.getenv("DB_NAME"),

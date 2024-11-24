@@ -14,7 +14,7 @@ import Header from './Header';
 
 test('shows header correctly', () => {
   const {getByText} = render(<Header />);
-  expect(getByText("C o o k B o o k")).toBeInTheDocument();
+  expect(getByText("CookBook")).toBeInTheDocument();
 });
 
 test('has navbar component ', () => {
