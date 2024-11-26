@@ -155,15 +155,34 @@ const RecipeInformationWrapped = () => {
   // accesses the state of the component from the app's store
   const recipeInfo = useSelector((state: any) => state.getRecipeInfoAppState)
   const [isSpeaking, setIsSpeaking] = useState(false)
+  const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const [selectedVoice, setSelectedVoice] = useState<SpeechSynthesisVoice | null>(null);
+
+  useEffect(() => {
+    // Load available voices
+    const loadVoices = () => {
+      const voices = window.speechSynthesis.getVoices();
+      setAvailableVoices(voices);
+      if (voices.length > 0) {
+        setSelectedVoice(voices[0]); // Default to the first voice
+      }
+    };
+
+    // Ensure voices are loaded
+    loadVoices();
+    if (typeof window.speechSynthesis.onvoiceschanged !== 'undefined') {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+  }, []);
+
   const speakInstructions = (instruction: string) => {
-    if (!isSpeaking) {
+    if (!isSpeaking && selectedVoice) {
       const synth = window.speechSynthesis
       const utterance = new SpeechSynthesisUtterance(instruction)
-      utterance.onend = () => {
-        setIsSpeaking(false)
-      }
-      synth.speak(utterance)
-      setIsSpeaking(true)
+      utterance.voice = selectedVoice;
+      utterance.onend = () => setIsSpeaking(false);
+      synth.speak(utterance);
+      setIsSpeaking(true);
     }
   }
   /* the effect hook below does an api call to get the recipe details
@@ -541,6 +560,33 @@ style={{
                   Follow along with the recipe as you cook, and feel free to
                   pause or repeat any step!
                 </div>
+                <div style={{ marginBottom: '20px' }}>
+        <label htmlFor="voiceSelector" style={{ marginRight: '10px' }}>
+          Select Voice:
+        </label>
+        <select
+          id="voiceSelector"
+          style={{ backgroundColor: theme.headerColor, 
+            color: theme.color, 
+            borderColor: theme.color,
+            padding: '10px 20px',
+            borderRadius: '5px',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+            transition: 'transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease',
+  cursor: 'pointer', }}
+          onChange={(e) => {
+            const selected = availableVoices.find((voice) => voice.name === e.target.value);
+            setSelectedVoice(selected || null);
+          }}
+          value={selectedVoice?.name || ''}
+        >
+          {availableVoices.map((voice) => (
+            <option key={voice.name} value={voice.name}>
+              {voice.name} ({voice.lang})
+            </option>
+          ))}
+        </select>
+      </div>
                 {recipe?.instructions.map((inst: string, idx: number) => (
                   <div
                   style={{  backgroundColor: theme.background, // Card background from theme
