@@ -21,7 +21,7 @@ import React from 'react'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import SmartShoppingList from './SmartShoppingList'
 import axios from 'axios'
-import { act } from 'react' // Updated import from 'react-dom/test-utils' to 'react'
+
 
 // Cast axios as a jest.Mocked object
 const mockedAxios = axios as jest.Mocked<typeof axios>
