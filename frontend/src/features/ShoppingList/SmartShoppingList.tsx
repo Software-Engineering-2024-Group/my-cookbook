@@ -19,6 +19,7 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete'
 import { jsPDF } from 'jspdf'
 import shoppingListImage from './image/shopping-list.jpg'
+import { useTheme } from '../Themes/themeContext'
 
 interface ShoppingItem {
   _id: string
@@ -29,6 +30,7 @@ interface ShoppingItem {
 }
 
 const SmartShoppingList: React.FC = () => {
+  const { theme } = useTheme();
   const [listItems, setListItems] = useState<ShoppingItem[]>([])
   const [newItem, setNewItem] = useState<string>('')
   const [quantity, setQuantity] = useState<number>(1)
@@ -190,23 +192,23 @@ const SmartShoppingList: React.FC = () => {
         sx={{
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: 'black',
+              borderColor: theme.color,
             },
             '&:hover fieldset': {
-              borderColor: 'black',
+              borderColor: theme.headerColor,
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'black',
+              borderColor: theme.color,
             },
             '& .MuiInputBase-input': {
-              color: 'black',
+              color: theme.color,
             },
           },
           '& .MuiInputLabel-root': {
-            color: 'black',
+            color: theme.color,
           },
           '& .MuiInputLabel-root.Mui-focused': {
-            color: 'black',
+            color: theme.color,
           },
         }}
       />
@@ -221,23 +223,23 @@ const SmartShoppingList: React.FC = () => {
         sx={{
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: 'black',
+              borderColor: theme.color,
             },
             '&:hover fieldset': {
-              borderColor: 'black',
+              borderColor: theme.color,
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'black',
+              borderColor: theme.color,
             },
             '& .MuiInputBase-input': {
-              color: 'black',
+              color: theme.color,
             },
           },
           '& .MuiInputLabel-root': {
-            color: 'black',
+            color: theme.color,
           },
           '& .MuiInputLabel-root.Mui-focused': {
-            color: 'black',
+            color: theme.color,
           },
         }}
       />
@@ -248,23 +250,23 @@ const SmartShoppingList: React.FC = () => {
         sx={{
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
-              borderColor: 'black',
+              borderColor: theme.color,
             },
             '&:hover fieldset': {
-              borderColor: 'black',
+              borderColor: theme.color,
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'black',
+              borderColor: theme.color,
             },
           },
           '& .MuiSelect-select': {
             textAlign: 'left',
           },
           '& .MuiInputLabel-root': {
-            color: 'black',
+            color: theme.color,
           },
           '& .MuiInputLabel-root.Mui-focused': {
-            color: 'black',
+            color: theme.color,
           },
         }}
       >
@@ -297,9 +299,9 @@ const SmartShoppingList: React.FC = () => {
         disabled={isProcessing}
         fullWidth
         sx={{
-          backgroundColor: 'black',
+          backgroundColor: theme.headerColor,
           '&:hover': {
-            backgroundColor: '#333',
+            backgroundColor: theme.color,
           },
           marginBottom: '20px',
         }}
@@ -346,11 +348,11 @@ const SmartShoppingList: React.FC = () => {
           style={{ marginTop: '20px' }}
           fullWidth
           sx={{
-            borderColor: 'black',
-            color: 'black',
+            borderColor: theme.headerColor,
+            color: theme.color,
             '&:hover': {
-              borderColor: '#333',
-              color: '#333',
+              borderColor: theme.color,
+              color: theme.headerColor,
             },
           }}
         >
