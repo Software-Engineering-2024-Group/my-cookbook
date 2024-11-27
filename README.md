@@ -234,7 +234,7 @@ Plan your meals for the week and print them with ease! CookBook helps you stay o
 ### 🛒 PDF Shopping List Export  
 Easily generate shopping lists from selected recipes and export them as PDFs for offline access and convenience. Save time and never forget an ingredient while shopping!  
 
-![Shopping List Export Screenshot](path-to-shopping-list-export-screenshot.png)  
+![Shopping List Export Screenshot](https://github.com/Software-Engineering-2024-Group/my-cookbook/blob/main/assets/shopping.png?raw=true)  
 
 ---
 
