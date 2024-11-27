@@ -188,7 +188,54 @@ npm start
 
 # Examples
 
-## New Functions 
+## ✨ New Functions 
+CookBook has been upgraded with exciting new features to make your cooking experience smarter, more interactive, and hassle-free! Below are the highlights of the latest functionalities added:
+### 🎤 Multiple Voice-Guided Recipes  
+A fresh addition! Choose from multiple voice options to guide you through cooking, enhancing convenience and enabling hands-free operation.  
+
+![Voice-Guided Recipes Screenshot](path-to-voice-guided-recipes-screenshot.png)  
+
+---
+
+### 🖼️ Personalized Themes  
+Make CookBook your own with beautifully designed themes like *Midnight Chef*, *Literary Lemon*, and more. Create the perfect cooking atmosphere tailored to your style.  
+
+![Personalized Themes Screenshot](path-to-personalized-themes-screenshot.png)  
+
+---
+
+### 📝 Printable Meal Plans  
+Plan your meals for the week and print them with ease! CookBook helps you stay organized by preparing a clear, printable meal plan to simplify your cooking schedule.  
+
+![Printable Meal Plans Screenshot](path-to-printable-meal-plans-screenshot.png)  
+
+---
+
+### 🛒 PDF Shopping List Export  
+Easily generate shopping lists from selected recipes and export them as PDFs for offline access and convenience. Save time and never forget an ingredient while shopping!  
+
+![Shopping List Export Screenshot](path-to-shopping-list-export-screenshot.png)  
+
+---
+
+### 🍝 Advanced Recipe Filters  
+Looking for something quick? Or perhaps you want to try a specific cuisine? Use advanced filters to narrow down recipes by:  
+- Cuisine type  
+- Cooking time  
+- Dietary preferences  
+
+![Recipe Filters Screenshot](path-to-recipe-filters-screenshot.png)  
+
+---
+
+### 🤝 Social Sharing & Quick Access  
+Share your favorite recipes instantly via Discord, Slack, or other social media platforms. Collaboration in the kitchen has never been easier!  
+
+![Social Sharing Screenshot](path-to-social-sharing-screenshot.png)  
+
+---
+
+
 
 ## Old Functions
 - This is the CookBook HomePage that should automatically open in a browser after executing the command: 'npm start'
