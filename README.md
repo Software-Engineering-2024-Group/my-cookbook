@@ -94,9 +94,6 @@ CookBook isn’t just a tool—it’s your cooking companion, saving time and br
 
 
 # What's New?
-### Click the image below
-[<img src="https://github.com/user-attachments/assets/e5986632-f7a2-45d0-a8c1-8780a7d500d3" width="100%">](https://youtu.be/6_TFpgyWG84 "CookBook V3 AMAPAD Demo")
-* Or use this link: [https://youtu.be/6_TFpgyWG84](https://youtu.be/6_TFpgyWG84)
 
 ## New features:
 - 🎤 **Voice-Guided Recipes**: Choose from multiple voices to guide you while you cook.  
