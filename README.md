@@ -244,7 +244,7 @@ Looking for something quick? Or perhaps you want to try a specific cuisine? Use 
 - Cooking time  
 - Dietary preferences  
 
-![Recipe Filters Screenshot](path-to-recipe-filters-screenshot.png)  
+![Recipe Filters Screenshot](https://github.com/Software-Engineering-2024-Group/my-cookbook/blob/main/assets/Category_filter.png?raw=true)  
 
 ---
 
