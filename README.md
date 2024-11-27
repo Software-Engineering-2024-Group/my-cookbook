@@ -110,7 +110,10 @@ With CookBook, cooking becomes an adventure. What will you create today? 🥘�
 ---
 ## 🎥 Demo Video  
 
-(https://youtu.be/Tk9iwPMeQhA)  
+[![Watch the Demo](https://img.youtube.com/vi/Tk9iwPMeQhA/0.jpg)](https://youtu.be/Tk9iwPMeQhA)  
+
+Click the image above to watch the demo video on YouTube! 🚀
+
 
 
 ## Better Software Design
