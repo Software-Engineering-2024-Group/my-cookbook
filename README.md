@@ -104,8 +104,9 @@ CookBook isn’t just a tool—it’s your cooking companion, saving time and br
 - 📝 **Printable Meal Plans**: Plan your meals for the week and print them for easy access.  
 - 🛒 **Smart Shopping Lists**: Automatically generate and export shopping lists as PDFs.  
 - 🍝 **Advanced Filters**: Search recipes by cuisine type, cooking time, or dietary preferences.  
-- 🤝 **Social Sharing**: Easily share recipes with friends via Discord, Slack, or social media.  
-
+- 🤝 **Social Sharing**: Easily share recipes with friends via Discord, Slack, or social media.
+  
+With CookBook, cooking becomes an adventure. What will you create today? 🥘👨‍🍳👩‍🍳  
 ---
   # Demo
 
