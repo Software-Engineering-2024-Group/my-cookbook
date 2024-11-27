@@ -188,6 +188,8 @@ npm start
 
 # Examples
 
+## New Functions 
+
 ## Old Functions
 - This is the CookBook HomePage that should automatically open in a browser after executing the command: 'npm start'
   <br><br>
@@ -217,7 +219,6 @@ npm start
 
 <br><br>
 
-## New Functions Tutorials
 
 - Start the App by URL.
 ![case](assets/HomePage_new.png)
