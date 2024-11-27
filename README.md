@@ -411,7 +411,7 @@ You can find the dataset used for this project [here](https://drive.google.com/f
 
 | Factor | Score | Notes |
 | --- | --- | --- |
-| Video | 3 | https://youtu.be/xQB6AbBLLWU?si=4RX05gmUf6D-M-7v](https://youtu.be/Tk9iwPMeQhA?si=6ZQWc6nXfInSZTet |
+| Video | 3 | https://youtu.be/Tk9iwPMeQhA?si=6ZQWc6nXfInSZTet |
 | Workload | 3 | Distributed |
 | Number of commits | 3 | 50+ |
 | Number of commits: by different people | 3 |https://github.com/Software-Engineering-2024-Group/my-cookbook/graphs/contributors |
