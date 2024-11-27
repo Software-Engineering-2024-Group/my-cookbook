@@ -266,7 +266,7 @@ Following extensions have to be added to you VS Code editor:
 [Codecov](https://app.codecov.io/gh/yzhu27/CookBook)
 ![civ](assets/codecov.png)
 
-
+In case of any queries and for additional help, please email us at: help.cookbook@gmail.com
 
 # Meet the Team
 
@@ -376,7 +376,7 @@ You can find the dataset used for this project [here](https://drive.google.com/f
 | Is your project's ticketing system publicly visible to your users, so they can view bug reports and feature requests? | 3 | https://github.com/Software-Engineering-2024-Group/my-cookbook/issues |
 
 
-In case of any queries and for additional help, please email us at: help.cookbook@gmail.com
+
 
 ```
 CookBook
