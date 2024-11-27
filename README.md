@@ -253,6 +253,8 @@ Share your favorite recipes instantly via Discord, Slack, or other social media 
 
 ![image](https://github.com/user-attachments/assets/beb3eb82-e251-4f4e-90e7-d0d0b924aa57)
 
+![image](https://github.com/user-attachments/assets/df62d5e3-fed0-4946-9b15-b6609aa46698)
+
 
 ---
 
