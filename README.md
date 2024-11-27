@@ -251,7 +251,7 @@ Looking for something quick? Or perhaps you want to try a specific cuisine? Use 
 ### 🤝 Social Sharing & Quick Access  
 Share your favorite recipes instantly via Discord, Slack, or other social media platforms. Collaboration in the kitchen has never been easier!  
 
-![Social Sharing Screenshot](path-to-social-sharing-screenshot.png)  
+![Social Sharing Screenshot](https://github.com/Software-Engineering-2024-Group/my-cookbook/blob/main/assets/discord.png?raw=true)  
 
 ---
 
