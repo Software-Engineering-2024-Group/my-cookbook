@@ -108,9 +108,9 @@ CookBook isn’t just a tool—it’s your cooking companion, saving time and br
   
 With CookBook, cooking becomes an adventure. What will you create today? 🥘👨‍🍳👩‍🍳  
 ---
-  # Demo
+## 🎥 Demo Video  
 
-<p align="center"><img width="700" src="./assets/demo.gif"></p><br><br>
+(https://youtu.be/Tk9iwPMeQhA)  
 
 
 ## Better Software Design
