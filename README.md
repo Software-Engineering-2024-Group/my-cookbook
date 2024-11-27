@@ -99,10 +99,14 @@ CookBook isn’t just a tool—it’s your cooking companion, saving time and br
 * Or use this link: [https://youtu.be/6_TFpgyWG84](https://youtu.be/6_TFpgyWG84)
 
 ## New features:
-- Make CookBook come online as a website: [Cook Book](https://cookbook-alpha.vercel.app/) Users don't need to install the backend and frontend anymore.
-- Add filtering system based on nutrition.
-- Created ingredient tags to simplify the searching.
+- 🎤 **Voice-Guided Recipes**: Choose from multiple voices to guide you while you cook.  
+- 🖼️ **Personalized Themes**: Customize your CookBook experience with themes like *Midnight Chef* or *Literary Lemon*.  
+- 📝 **Printable Meal Plans**: Plan your meals for the week and print them for easy access.  
+- 🛒 **Smart Shopping Lists**: Automatically generate and export shopping lists as PDFs.  
+- 🍝 **Advanced Filters**: Search recipes by cuisine type, cooking time, or dietary preferences.  
+- 🤝 **Social Sharing**: Easily share recipes with friends via Discord, Slack, or social media.  
 
+---
   # Demo
 
 <p align="center"><img width="700" src="./assets/demo.gif"></p><br><br>
