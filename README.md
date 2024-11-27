@@ -226,7 +226,7 @@ Make CookBook your own with beautifully designed themes like *Midnight Chef*, *L
 ### 📝 Printable Meal Plans  
 Plan your meals for the week and print them with ease! CookBook helps you stay organized by preparing a clear, printable meal plan to simplify your cooking schedule.  
 
-![Printable Meal Plans Screenshot](path-to-printable-meal-plans-screenshot.png)  
+![Printable Meal Plans Screenshot](path-to-printable-meal-plans-screenshot.png](https://github.com/Software-Engineering-2024-Group/my-cookbook/blob/main/assets/mealplan.png)  
 
 ---
 
