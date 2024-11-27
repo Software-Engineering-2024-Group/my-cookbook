@@ -93,7 +93,7 @@ CookBook isn’t just a tool—it’s your cooking companion, saving time and br
 
 
 
-# What's New?
+# 🚀 What's New?
 
 ## New features:
 - 🎤 **Voice-Guided Recipes**: Choose from multiple voices to guide you while you cook.  
