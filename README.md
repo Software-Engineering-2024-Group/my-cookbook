@@ -1,4 +1,5 @@
-![Mugdha Joshi  SoundHarya Khanapur Jing Huang](https://github.com/user-attachments/assets/970d9ad7-a3e2-456f-b6a7-2589e791277d)
+
+![Mugdha Joshi  SoundHarya Khanapur Jing Huang](https://github.com/user-attachments/assets/a6cd60a1-6e18-4395-94a6-6a63fa030f94)
 
 <div align="center">
 
