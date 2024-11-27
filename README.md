@@ -142,7 +142,7 @@ If problems persist, follow the installation instructions below to run CookBook 
 
 ---
 
-# 🛠️ Installations  
+# 🛠️Installations  
 
 ## Prerequisites  
 Before setting up the project, ensure you have the following installed:  
@@ -161,49 +161,50 @@ PORT = 8000
 *   (Optional) [Python 3.11](https://www.python.org/downloads/) and [pytest 7.4.4](https://docs.pytest.org/) for testing the API
 *   (Optional) [Node.js](https://nodejs.org/en/download/) and [npm](https://docs.npmjs.com/cli/v7/commands/npm) for frontend testing
   
-## Backend Installation
 
-## Backend Installation
 
-To set up the back end, do:<br>
-Make sure you are in the base folder.<br><br>
-In order to run the application server, run the following commands:
+## 🔧 Backend Installation
 
-```bash
-cd api
-pip install -r requirements.txt
-python -m uvicorn main:app --reload
-```
+Follow these steps to set up and run the backend server:
 
-Refer to the [Swagger](#swagger) section for sample API calls.
-<br>
+1. **Navigate to the API folder**:
+   ```bash
+   cd api
+   
+2. **Install required dependencies**:
+    ```bash
+    pip install -r requirements.txt
 
-### Trouble Shooting
+3. **Run the application server**:
+   ```bash
+   python -m uvicorn main:app --reload
+
+
+
+### 🛠️Trouble Shooting
 
 In case you run into any issues running the above commands, some operating systems may require you to use `python3` instead of `python` and `pip3` instead of `pip`.<br><br>
 
-## Frontend Installation
+## 🎨Frontend Installation
 
-To set up the front end React app, do:<br>
+To set up the front end React app, do:
+1. **Navigate to the frontend folder**:
+   ```bash
+   cd frontend
 
-```bash
-cd frontend
-npm install
+   
+2. **Install required dependencies**:
+    ```bash
+    npm install
 
-// if npm install fails, try this
-npm install --legacy-peer-deps
-```
+3. **If the above command fails, use the following alternative:**:
+   ```bash
+   npm install --legacy-peer-deps
+   
+4. **Start the React app:**
+   ```bash
+   npm start
 
-<br>
-
-## To run the front end React app, do:
-
-```bash
-cd frontend
-npm start
-```
-
-<br>
 
 # Examples
 
