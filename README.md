@@ -113,29 +113,48 @@ Click the image above to watch the demo video on YouTube! 🚀
 
 
 
-## Better Software Design
+# 🚀 Better Software Design  
 
-- Improved the scalability by [CDN](https://github.com/yzhu27/CookBook/blob/main/docs/Scalability.md#content-delivery-network), [Load Balancing](https://github.com/yzhu27/CookBook/blob/main/docs/Scalability.md#load-balancing-on-cloudflare). [Cache](https://github.com/yzhu27/CookBook/blob/main/docs/Scalability.md#cache), etc.
-- Improved the safety by [Domain](https://github.com/yzhu27/CookBook/blob/main/docs/Safety.md#domain), [SSL/TSL](https://github.com/yzhu27/CookBook/blob/main/docs/Safety.md#ssltls), [DDoS Protection](https://github.com/yzhu27/CookBook/blob/main/docs/Safety.md#ddos-protection).
-# Installations
+CookBook is designed with scalability, safety, and reliability in mind. The software architecture includes modern solutions to ensure a seamless experience for users.
 
-## Access the website
-Access this link [Cook Book](https://cookbook-alpha.vercel.app/).
+### Scalability Enhancements  
+- **[Content Delivery Network (CDN)](https://github.com/yzhu27/CookBook/blob/main/docs/Scalability.md#content-delivery-network)**: Accelerates content delivery by distributing data globally.  
+- **[Load Balancing](https://github.com/yzhu27/CookBook/blob/main/docs/Scalability.md#load-balancing-on-cloudflare)**: Ensures optimal resource utilization and improves availability.  
+- **[Cache](https://github.com/yzhu27/CookBook/blob/main/docs/Scalability.md#cache)**: Reduces latency and increases speed by caching frequently accessed content.  
 
-### Trouble Shooting
-If this page failed, try to change your network environment. Typically, we noticed some DNS resolve failures under NC State network. That may caused by NCSU's DNS server problem. You may try your home network or mobile hotspot instead.
+### Safety Enhancements  
+- **[Domain](https://github.com/yzhu27/CookBook/blob/main/docs/Safety.md#domain)**: Ensures secure domain configurations.  
+- **[SSL/TLS](https://github.com/yzhu27/CookBook/blob/main/docs/Safety.md#ssltls)**: Encrypts communication between users and the server for secure data transfer.  
+- **[DDoS Protection](https://github.com/yzhu27/CookBook/blob/main/docs/Safety.md#ddos-protection)**: Protects against distributed denial-of-service attacks to ensure site reliability.  
 
-If you still fail to load the site, try the following steps.
+---
 
-##  Prerequisites
-*   [MongoDB](https://www.mongodb.com/products/platform/cloud) Create a cluster and generate DB URL, username, and password
-*   [GROQ](https://groq.com/) Create an API key
-*   Create `.env` File in the `api` folder:
-```
+# 🌐 Access the Website  
+
+Access CookBook directly via this link: [Cook Book](https://cookbook-alpha.vercel.app/).  
+
+### 🛠️ Troubleshooting  
+If the page fails to load, you can try the following:  
+- Switch to a different network environment (e.g., home network or mobile hotspot).  
+- Some users may experience DNS resolution failures under NC State's network due to DNS server issues.  
+
+If problems persist, follow the installation instructions below to run CookBook locally.  
+
+---
+
+# 🛠️ Installations  
+
+## Prerequisites  
+Before setting up the project, ensure you have the following installed:  
+- **[MongoDB](https://www.mongodb.com/products/platform/cloud)**: Create a cluster and generate the DB URL, username, and password.  
+- **[GROQ](https://groq.com/)**: Create an API key.  
+- **Create a `.env` file** in the `api` folder with the following details:  
+```env
 ATLAS_URI = ...
 DATABASE = cookbook
 GROQ_API_KEY = ...
 PORT = 8000
+
 ```
 *   [Docker](https://docs.docker.com/get-docker/)
 *   [Docker Compose](https://docs.docker.com/compose/install/)
@@ -200,7 +219,7 @@ A fresh addition! Choose from multiple voice options to guide you through cookin
 ### 🖼️ Personalized Themes  
 Make CookBook your own with beautifully designed themes like *Midnight Chef*, *Literary Lemon*, and more. Create the perfect cooking atmosphere tailored to your style.  
 
-![Personalized Themes Screenshot](path-to-personalized-themes-screenshot.png)  
+![image](https://github.com/user-attachments/assets/28d6a098-5512-48b0-b5ba-adc998e97313)
 
 ---
 
