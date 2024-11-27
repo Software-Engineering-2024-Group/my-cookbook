@@ -213,14 +213,14 @@ CookBook has been upgraded with exciting new features to make your cooking exper
 ### 🎤 Multiple Voice-Guided Recipes  
 A fresh addition! Choose from multiple voice options to guide you through cooking, enhancing convenience and enabling hands-free operation.  
 
-![Voice-Guided Recipes Screenshot](path-to-voice-guided-recipes-screenshot.png)  
+![Voice-Guided Recipes Screenshot](https://github.com/user-attachments/assets/c24d6cec-9fa9-4aaa-9924-5307d6bfba8b)
 
 ---
 
 ### 🖼️ Personalized Themes  
 Make CookBook your own with beautifully designed themes like *Midnight Chef*, *Literary Lemon*, and more. Create the perfect cooking atmosphere tailored to your style.  
 
-![image](https://github.com/user-attachments/assets/28d6a098-5512-48b0-b5ba-adc998e97313)
+![Personalized Themes Screenshot](https://github.com/user-attachments/assets/28d6a098-5512-48b0-b5ba-adc998e97313)
 
 ---
 
@@ -251,9 +251,9 @@ Looking for something quick? Or perhaps you want to try a specific cuisine? Use 
 ### 🤝 Social Sharing & Quick Access  
 Share your favorite recipes instantly via Discord, Slack, or other social media platforms. Collaboration in the kitchen has never been easier!  
 
-![image](https://github.com/user-attachments/assets/beb3eb82-e251-4f4e-90e7-d0d0b924aa57)
+![Social Sharing Screenshot](https://github.com/user-attachments/assets/beb3eb82-e251-4f4e-90e7-d0d0b924aa57)
 
-![image](https://github.com/user-attachments/assets/df62d5e3-fed0-4946-9b15-b6609aa46698)
+![FAQ Screenshot](https://github.com/user-attachments/assets/df62d5e3-fed0-4946-9b15-b6609aa46698)
 
 
 ---
