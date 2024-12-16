@@ -160,8 +160,9 @@ PORT = 8000
 *   [Docker Compose](https://docs.docker.com/compose/install/)
 *   (Optional) [Python 3.11](https://www.python.org/downloads/) and [pytest 7.4.4](https://docs.pytest.org/) for testing the API
 *   (Optional) [Node.js](https://nodejs.org/en/download/) and [npm](https://docs.npmjs.com/cli/v7/commands/npm) for frontend testing
-  
 
+## 📊 Dataset
+You can find the dataset used for this project [here](https://drive.google.com/file/d/12CZFb7Ugmiw9zQ7M_qpRsn7pmaV1zW0c/view?usp=sharing)
 
 ## 🔧 Backend Installation
 
